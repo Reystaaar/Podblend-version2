@@ -42,7 +42,7 @@
             --txt-d:#F4F4F5; --txt-d2:#9CA3AF;
             --txt-l:#0A0A0B; --txt-l2:#6B7280;
             --line-d:rgba(255,255,255,0.10); --line-l:#E5E7EB;
-            --accent:#131644; --accent-bright:#3a3fb0;
+            --accent:#131644; --accent-bright:#2a31b8;
         }
         html,body{background:var(--ink);}
         body{color:var(--txt-d); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden;}
@@ -64,7 +64,7 @@
 
         /* Halos / glows (monde noir uniquement) */
         .glow{position:absolute; border-radius:9999px; filter:blur(90px); pointer-events:none; opacity:0.5;}
-        .glow-accent{background:radial-gradient(circle, rgba(58,63,176,0.55), transparent 70%);}
+        .glow-accent{background:radial-gradient(circle, rgba(42,49,184,0.5), transparent 70%);}
 
         /* Grilles de fond subtiles */
         .grid-dark{background-size:44px 44px;
@@ -99,7 +99,7 @@
         /* CTA */
         .btn-accent{background:var(--accent); color:#fff; border-radius:999px; font-weight:700;
             transition:all .35s cubic-bezier(.22,1,.36,1); box-shadow:0 10px 30px -10px rgba(19,22,68,.7);}
-        .btn-accent:hover{transform:translateY(-2px); box-shadow:0 18px 45px -12px rgba(58,63,176,.8);}
+        .btn-accent:hover{transform:translateY(-2px); box-shadow:0 18px 45px -12px rgba(19,22,68,.85);}
         .btn-light{background:#fff; color:var(--ink); border-radius:999px; font-weight:700;
             transition:all .35s cubic-bezier(.22,1,.36,1);}
         .btn-light:hover{transform:translateY(-2px); background:#e9e9ee;}
@@ -144,16 +144,16 @@
             background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
             transition:transform .5s cubic-bezier(.22,1,.36,1), background .5s ease, border-color .5s ease, box-shadow .5s ease;}
         .ent-card::after{content:''; position:absolute; inset:0; border-radius:24px; opacity:0;
-            background:radial-gradient(120% 120% at 100% 0%, rgba(58,63,176,.25), transparent 60%);
+            background:radial-gradient(120% 120% at 100% 0%, rgba(42,49,184,.22), transparent 60%);
             transition:opacity .5s ease; pointer-events:none;}
         .ent-card:hover{transform:translateY(-6px); background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.16);
-            box-shadow:0 30px 60px -25px rgba(58,63,176,.5);}
+            box-shadow:0 30px 60px -25px rgba(19,22,68,.55);}
         .ent-card:hover::after{opacity:1;}
         .ent-card-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.6rem;}
         .ent-ico{width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center;
-            background:rgba(58,63,176,0.18); border:1px solid rgba(255,255,255,0.10); transition:background .5s ease;}
+            background:rgba(19,22,68,0.45); border:1px solid rgba(255,255,255,0.10); transition:background .5s ease;}
         .ent-ico svg{width:22px; height:22px; fill:none; stroke:#fff; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; opacity:.9;}
-        .ent-card:hover .ent-ico{background:rgba(58,63,176,0.4);}
+        .ent-card:hover .ent-ico{background:rgba(19,22,68,0.7);}
         .ent-idx{font-family:'Space Grotesk',monospace; font-size:.72rem; font-weight:600; letter-spacing:.12em; color:rgba(255,255,255,0.25);}
 
         /* Card stack (preuve sociale) */
@@ -166,18 +166,18 @@
 
         /* ---------- NAVBAR (floating glass — HVA) ---------- */
         #navbar{transition:transform .4s ease;}
-        .nav-pill{background:rgba(10,10,11,.55); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%);
-            border:1px solid rgba(255,255,255,.12); border-radius:100px;
-            box-shadow:0 10px 34px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08); transition:background .4s ease;}
-        #navbar.scrolled .nav-pill{background:rgba(10,10,11,.82);}
+        .nav-pill{background:rgba(10,10,11,.32); backdrop-filter:blur(20px) saturate(170%); -webkit-backdrop-filter:blur(20px) saturate(170%);
+            border:1px solid rgba(255,255,255,.10); border-radius:100px;
+            box-shadow:0 10px 34px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.08); transition:background .4s ease;}
+        #navbar.scrolled .nav-pill{background:rgba(10,10,11,.6);}
         .nav-link{font-family:'Space Grotesk',monospace; text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:500; color:rgba(255,255,255,.62); transition:color .3s ease; white-space:nowrap;}
         .nav-link:hover{color:#fff;}
         .live-dot{width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 10px var(--accent-bright); animation:pulse 2s ease infinite;}
 
         /* ---------- HERO HVA (dark) ---------- */
         .hero-h1{font-family:'Space Grotesk',monospace; font-weight:700; letter-spacing:-.04em; line-height:1.0; font-size:clamp(2.5rem,6.2vw,5.4rem);}
-        .hl-blue{display:inline-block; background:var(--accent-bright); color:#fff; padding:0 .14em; border-radius:14px;
-            box-decoration-break:clone; -webkit-box-decoration-break:clone; box-shadow:0 16px 44px -14px rgba(58,63,176,.75);}
+        .hl-blue{display:inline-block; background:var(--accent); color:#fff; padding:0 .14em; border-radius:14px;
+            box-decoration-break:clone; -webkit-box-decoration-break:clone; box-shadow:0 16px 44px -14px rgba(19,22,68,.85);}
         .hl-soft{display:inline-block; background:#fff; color:var(--ink); padding:0 .12em; border-radius:14px;
             box-decoration-break:clone; -webkit-box-decoration-break:clone;}
         .btn-ghost-d{border-radius:999px; font-weight:700; color:#fff; border:1px solid rgba(255,255,255,.22);
@@ -196,8 +196,25 @@
         /* ---------- SOCIALS ---------- */
         .social-ic{width:42px; height:42px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
             border:1px solid rgba(255,255,255,.14); color:rgba(255,255,255,.7); transition:all .3s ease;}
-        .social-ic:hover{border-color:var(--accent-bright); color:#fff; background:rgba(58,63,176,.25); transform:translateY(-2px);}
+        .social-ic:hover{border-color:var(--accent-bright); color:#fff; background:rgba(42,49,184,.22); transform:translateY(-2px);}
         .social-ic svg{width:19px; height:19px;}
+
+        /* ---------- FOOTER HVA (watermark + cards) ---------- */
+        .footer-wm{position:absolute; left:50%; bottom:-1.5rem; transform:translateX(-50%); font-family:'Space Grotesk',monospace;
+            font-weight:700; letter-spacing:-.05em; line-height:1; white-space:nowrap; pointer-events:none; user-select:none;
+            font-size:clamp(5rem,19vw,17rem); color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.055); z-index:0;}
+        .footer-mail{background:#fff; color:var(--ink); border-radius:999px; padding:.5rem .5rem .5rem 1.5rem; font-weight:700;
+            transition:all .35s cubic-bezier(.22,1,.36,1);}
+        .footer-mail:hover{transform:translateY(-2px); box-shadow:0 18px 40px -16px rgba(255,255,255,.22);}
+        .footer-mail-arrow{width:36px; height:36px; border-radius:50%; background:var(--accent); color:#fff; display:inline-flex; align-items:center; justify-content:center; transition:transform .35s ease;}
+        .footer-mail:hover .footer-mail-arrow{transform:rotate(-45deg);}
+        .social-card{display:flex; align-items:center; gap:1rem; padding:1.05rem 1.2rem; border-radius:20px;
+            background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.10); transition:all .4s cubic-bezier(.22,1,.36,1);}
+        .social-card:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.2); transform:translateY(-3px);}
+        .social-card-ic{width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff;}
+        .social-card-arrow{margin-left:auto; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.18);
+            display:inline-flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); transition:all .35s ease;}
+        .social-card:hover .social-card-arrow{background:var(--accent); border-color:var(--accent); color:#fff; transform:rotate(-45deg);}
 
         /* ---------- IMPACT — registre éditorial ---------- */
         .impact-meta{display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:1.1rem; margin-bottom:3.5rem;}
@@ -210,7 +227,7 @@
         .ledger-idx{font-family:'Space Grotesk',monospace; font-size:.7rem; letter-spacing:.12em; color:rgba(255,255,255,.28);}
         .ledger-num{font-family:'Space Grotesk',monospace; font-weight:700; font-size:2.7rem; line-height:1; letter-spacing:-.03em; color:#fff; transition:text-shadow .4s ease;}
         .ledger-num sup{font-size:.42em; vertical-align:super; color:var(--accent-bright); margin-left:.15rem;}
-        .ledger-row:hover .ledger-num{text-shadow:0 0 34px rgba(58,63,176,.55);}
+        .ledger-row:hover .ledger-num{text-shadow:0 0 34px rgba(42,49,184,.55);}
         .ledger-label{color:rgba(255,255,255,.55); font-size:1.02rem; align-self:center;}
         .ledger-ctx{justify-self:end; align-self:center; font-family:'Space Grotesk',monospace; text-transform:uppercase; font-size:.66rem; letter-spacing:.16em; color:rgba(255,255,255,.32);}
         @media(max-width:640px){
@@ -310,16 +327,10 @@
             </a>
             <a href="#decors" class="btn-ghost-d inline-flex items-center gap-2 px-7 py-4 text-sm">Voir les décors</a>
         </div>
-        <div class="flex flex-wrap items-center gap-4">
-            <span class="hero-kicker"><span class="hk-dot"></span> Studio · Gennevilliers · Paris</span>
-            <div class="hero-map">
-                <iframe title="Studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" loading="lazy"></iframe>
-            </div>
-            <div class="flex items-center gap-5 pl-1">
-                <div><div class="display text-xl text-white">+100</div><div class="text-[0.7rem] text-white/50 font-medium">entreprises</div></div>
-                <div class="w-px h-7 bg-white/15"></div>
-                <div><div class="display text-xl text-white">+1 Md</div><div class="text-[0.7rem] text-white/50 font-medium">vues cumulées</div></div>
-            </div>
+        <div class="flex items-center gap-5">
+            <div><div class="display text-xl text-white">+100</div><div class="text-[0.7rem] text-white/50 font-medium">entreprises</div></div>
+            <div class="w-px h-7 bg-white/15"></div>
+            <div><div class="display text-xl text-white">+1 Md</div><div class="text-[0.7rem] text-white/50 font-medium">vues cumulées</div></div>
         </div>
     </div>
 
@@ -369,7 +380,6 @@
                 <h2 class="display text-4xl md:text-5xl text-ink mb-4">Quatre décors,<br>une même exigence.</h2>
                 <p class="lead text-[var(--txt-l2)]">Chaque plateau est éclairé, calibré et prêt à tourner. Vous choisissez l'ambiance, on s'occupe du reste.</p>
             </div>
-            <span class="ghost-num text-[7rem] md:text-[10rem] hidden md:block leading-none select-none">01</span>
         </div>
 
         <div class="decor-row flex flex-col md:flex-row w-full h-auto md:h-[560px] gap-4" data-reveal>
@@ -781,35 +791,43 @@
     </div>
 </section>
 
-<!-- ============ FOOTER (NOIR — signé) ============ -->
-<footer class="world-dark border-t border-white/5 py-16">
-    <div class="max-w-container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-        <div>
-            <a href="#hero" class="block w-28 mb-5 hover:opacity-80 transition">
-                <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto" loading="lazy" width="112" height="32">
-            </a>
-            <p class="text-white/50 text-sm max-w-xs mb-6 leading-relaxed">L'espace de création premium à Paris. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
-            <div class="flex items-center gap-3 mb-6">
-                <a href="https://www.instagram.com/podblend.fr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Podblend" class="social-ic">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+<!-- ============ FOOTER (NOIR — DA Horizon : watermark + cards) ============ -->
+<footer class="world-dark relative overflow-hidden border-t border-white/5 pt-20 md:pt-24 pb-10">
+    <div class="footer-wm" aria-hidden="true">PODBLEND</div>
+    <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+            <!-- Bloc identité -->
+            <div>
+                <a href="#hero" class="block w-32 mb-7 hover:opacity-80 transition">
+                    <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto" loading="lazy" width="128" height="36">
                 </a>
-                <a href="https://www.linkedin.com/company/podblend/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Podblend" class="social-ic">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18.5h2.67V9.5zM7 5.88a1.55 1.55 0 1 0 0 3.09 1.55 1.55 0 0 0 0-3.09zM18.34 18.5v-4.93c0-2.64-1.41-3.87-3.29-3.87a2.84 2.84 0 0 0-2.57 1.41h-.04V9.5H9.84V18.5h2.67v-4.46c0-1.18.22-2.32 1.68-2.32 1.44 0 1.46 1.35 1.46 2.39v4.39h2.69z"/></svg>
+                <p class="text-white/55 max-w-md leading-relaxed mb-8">Studio de création premium à Paris. Podcasts, vidéos d'entreprise, ads et interviews — clé en main, matériel cinéma et opérateur inclus. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
+                <a href="mailto:contact@podblend.fr" class="footer-mail inline-flex items-center gap-4">
+                    <span>contact@podblend.fr</span>
+                    <span class="footer-mail-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
                 </a>
             </div>
-            <div class="text-white/40 text-xs tracking-wide border-t border-white/10 pt-4 max-w-[220px]">
-                <p>© 2024-2026 Podblend. Tous droits réservés.</p>
-                <p class="mt-3 pt-3 border-t border-white/5">Made by <a href="https://horizon-visual-agency.com/" target="_blank" rel="noopener" class="text-white/60 font-bold hover:text-white transition">Horizon Visual Agency</a></p>
+            <!-- Cartes réseaux -->
+            <div class="flex flex-col gap-4 w-full lg:max-w-md lg:ml-auto">
+                <a href="https://www.linkedin.com/company/podblend/" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <span class="social-card-ic" style="background:#0A66C2"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18.5h2.67V9.5zM7 5.88a1.55 1.55 0 1 0 0 3.09 1.55 1.55 0 0 0 0-3.09zM18.34 18.5v-4.93c0-2.64-1.41-3.87-3.29-3.87a2.84 2.84 0 0 0-2.57 1.41h-.04V9.5H9.84V18.5h2.67v-4.46c0-1.18.22-2.32 1.68-2.32 1.44 0 1.46 1.35 1.46 2.39v4.39h2.69z"/></svg></span>
+                    <span><span class="block font-bold text-white">LinkedIn</span><span class="block text-white/45 text-sm">@podblend</span></span>
+                    <span class="social-card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                </a>
+                <a href="https://www.instagram.com/podblend.fr/" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <span class="social-card-ic" style="background:radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></span>
+                    <span><span class="block font-bold text-white">Instagram</span><span class="block text-white/45 text-sm">@podblend.fr</span></span>
+                    <span class="social-card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                </a>
             </div>
         </div>
-        <div class="flex flex-col gap-3 text-sm text-white/55 font-bold tracking-wide">
-            <a href="legal.html" class="hover:text-white hover:translate-x-1 inline-block transition">Mentions Légales</a>
-            <a href="politique-confidentialite.html" class="hover:text-white hover:translate-x-1 inline-block transition">Politique de confidentialité</a>
-            <a href="cgv.html" class="hover:text-white hover:translate-x-1 inline-block transition">CGV</a>
-            <a href="contact.html" class="hover:text-white hover:translate-x-1 inline-block transition">Contact</a>
-        </div>
-        <div class="w-full md:w-56 h-32 rounded-2xl overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 md:justify-self-end shadow-2xl">
-            <iframe title="Carte studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <!-- Barre de bas -->
+        <div class="mt-16 md:mt-20 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div class="text-white/45 text-sm">© 2024–2026 Podblend — <a href="legal.html" class="hover:text-white transition">Mentions légales</a> · <a href="cgv.html" class="hover:text-white transition">CGV</a> · <a href="politique-confidentialite.html" class="hover:text-white transition">Confidentialité</a></div>
+            <div class="flex items-center gap-5 text-sm">
+                <span class="flex items-center gap-2 text-white/45"><span class="hk-dot"></span> Gennevilliers · Paris</span>
+                <span class="text-white/30">Made by <a href="https://horizon-visual-agency.com/" target="_blank" rel="noopener" class="text-white/60 font-bold hover:text-white transition">Horizon Visual Agency</a></span>
+            </div>
         </div>
     </div>
 </footer>

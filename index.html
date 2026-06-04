@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podblend — Studios d'enregistrement premium à Paris</title>
+    <meta name="description" content="Podblend : studio d'enregistrement premium à Paris pour podcasts, vidéos d'entreprise, ads et interviews. Matériel haut de gamme inclus, clé en main.">
+
+    <link rel="icon" type="image/webp" href="./favicon.webp">
+    <link rel="apple-touch-icon" href="./favicon.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              display: ['Space Grotesk', 'monospace'],
+            },
+            colors: {
+              ink: '#0A0A0B',
+              inksoft: '#111114',
+              paper: '#FFFFFF',
+              papersoft: '#FAFAFA',
+              accent: '#131644',
+            },
+            maxWidth: { container: '1280px' },
+          }
+        }
+      }
+    </script>
+
+    <style>
+        :root{
+            --ink:#0A0A0B; --ink-soft:#111114;
+            --paper:#FFFFFF; --paper-soft:#FAFAFA;
+            --txt-d:#F4F4F5; --txt-d2:#9CA3AF;
+            --txt-l:#0A0A0B; --txt-l2:#6B7280;
+            --line-d:rgba(255,255,255,0.10); --line-l:#E5E7EB;
+            --accent:#131644; --accent-bright:#3a3fb0;
+        }
+        html,body{background:var(--ink);}
+        body{color:var(--txt-d); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden;}
+
+        /* ---------- TYPOGRAPHIE ---------- */
+        .display{font-family:'Space Grotesk',monospace; letter-spacing:-0.03em; font-weight:700; line-height:1.02;}
+        .label{font-family:'Space Grotesk',monospace; text-transform:uppercase; letter-spacing:0.18em; font-size:0.72rem; font-weight:600;}
+        .label::before{content:'// '; opacity:0.5;}
+        .lead{font-size:1.0625rem; line-height:1.65; max-width:38ch;}
+
+        /* ---------- NOISE ---------- */
+        .noise{position:fixed; inset:0; pointer-events:none; z-index:60; opacity:0.025;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+        /* ---------- MONDES ---------- */
+        .world-dark{background:var(--ink); color:var(--txt-d); position:relative;}
+        .world-light{background:var(--paper); color:var(--txt-l); position:relative;}
+        .world-soft{background:var(--paper-soft); color:var(--txt-l); position:relative;}
+
+        /* Halos / glows (monde noir uniquement) */
+        .glow{position:absolute; border-radius:9999px; filter:blur(90px); pointer-events:none; opacity:0.5;}
+        .glow-accent{background:radial-gradient(circle, rgba(58,63,176,0.55), transparent 70%);}
+
+        /* Grilles de fond subtiles */
+        .grid-dark{background-size:44px 44px;
+            background-image:linear-gradient(to right,rgba(255,255,255,.03) 1px,transparent 1px),
+                             linear-gradient(to bottom,rgba(255,255,255,.03) 1px,transparent 1px);}
+        .grid-light{background-size:44px 44px;
+            background-image:linear-gradient(to right,rgba(0,0,0,.04) 1px,transparent 1px),
+                             linear-gradient(to bottom,rgba(0,0,0,.04) 1px,transparent 1px);}
+
+        /* Transitions de jointure entre sections */
+        .seam-d-to-l{height:9rem; background:linear-gradient(to bottom,var(--ink),var(--paper));}
+        .seam-l-to-d{height:9rem; background:linear-gradient(to bottom,var(--paper),var(--ink));}
+        .seam-soft-to-d{height:9rem; background:linear-gradient(to bottom,var(--paper-soft),var(--ink));}
+        .seam-d-to-soft{height:9rem; background:linear-gradient(to bottom,var(--ink),var(--paper-soft));}
+        @media(max-width:768px){.seam-d-to-l,.seam-l-to-d,.seam-soft-to-d,.seam-d-to-soft{height:5rem;}}
+
+        /* Cartes : glass (noir) vs ombre douce (blanc) */
+        .card-glass{background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.10);
+            backdrop-filter:blur(12px); border-radius:24px;}
+        .card-soft{background:#fff; border:1px solid var(--line-l); border-radius:24px;
+            box-shadow:0 20px 50px -25px rgba(10,10,11,0.18);}
+
+        /* Pills / badges */
+        .pill{display:inline-flex; align-items:center; gap:.5rem; border-radius:999px;
+            font-family:'Space Grotesk',monospace; font-size:.72rem; font-weight:600; letter-spacing:.04em;
+            padding:.4rem 1rem;}
+        .pill-d{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:var(--txt-d);}
+        .pill-l{background:rgba(19,22,68,0.06); border:1px solid rgba(19,22,68,0.12); color:var(--accent);}
+        .dot{width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.7; animation:pulse 2s ease infinite;}
+        @keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+
+        /* CTA */
+        .btn-accent{background:var(--accent); color:#fff; border-radius:999px; font-weight:700;
+            transition:all .35s cubic-bezier(.22,1,.36,1); box-shadow:0 10px 30px -10px rgba(19,22,68,.7);}
+        .btn-accent:hover{transform:translateY(-2px); box-shadow:0 18px 45px -12px rgba(58,63,176,.8);}
+        .btn-light{background:#fff; color:var(--ink); border-radius:999px; font-weight:700;
+            transition:all .35s cubic-bezier(.22,1,.36,1);}
+        .btn-light:hover{transform:translateY(-2px); background:#e9e9ee;}
+
+        .hide-scroll::-webkit-scrollbar{display:none;}
+        .hide-scroll{-ms-overflow-style:none; scrollbar-width:none;}
+        .mask-x{-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);}
+
+        /* Marquee logos */
+        @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+        .animate-scroll{animation:scroll 38s linear infinite;}
+
+        /* Reveal au scroll */
+        [data-reveal]{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1);}
+        [data-reveal].in{opacity:1; transform:none;}
+
+        /* FAQ */
+        .faq-item{border-bottom:1px solid var(--line-l);}
+        .faq-trigger{cursor:pointer; padding:1.6rem 0; width:100%; display:flex; justify-content:space-between; align-items:center; gap:1rem;}
+        .faq-content{max-height:0; opacity:0; overflow:hidden; transition:max-height .5s cubic-bezier(.4,0,.2,1), opacity .4s ease, padding .4s ease;}
+        .faq-item.active .faq-content{opacity:1; padding-bottom:1.6rem;}
+        .faq-icon svg{transition:transform .4s cubic-bezier(.4,0,.2,1);}
+        .faq-item.active .faq-icon svg{transform:rotate(45deg);}
+
+        /* Pricing scroll */
+        .pricing-scroll{display:flex; gap:1.5rem; padding:2rem .25rem 3rem; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;}
+        .pricing-card{flex:0 0 360px; scroll-snap-align:center; transition:transform .5s cubic-bezier(.34,1.56,.64,1), box-shadow .5s ease;}
+        @media(min-width:768px){.pricing-card:hover{transform:translateY(-10px) scale(1.02); z-index:5;}}
+        @media(max-width:768px){.pricing-card{flex:0 0 84vw;}}
+        .switch{display:inline-flex; background:rgba(255,255,255,0.05); padding:4px; border-radius:999px; border:1px solid var(--line-d);}
+        .switch-btn{padding:9px 26px; border-radius:999px; font-weight:700; font-family:'Space Grotesk',monospace; cursor:pointer; transition:all .35s ease; color:var(--txt-d2); font-size:.85rem;}
+        .switch-btn.active{background:#fff; color:var(--ink);}
+
+        /* Décors hover */
+        .decor{flex:1; transition:flex .7s cubic-bezier(.25,1,.5,1), filter .7s ease; filter:grayscale(100%); min-height:260px;}
+        @media(max-width:768px){.decor{filter:grayscale(0); min-height:230px;} .decor .decor-meta{opacity:1!important; transform:none!important;}}
+        @media(min-width:769px){.decor-row:hover .decor{filter:grayscale(100%);} .decor-row:hover .decor:hover{flex:3.2; filter:grayscale(0);}}
+
+        /* Entreprises — bento formats */
+        .ent-card{position:relative; display:flex; flex-direction:column; justify-content:space-between; min-height:210px;
+            padding:1.6rem 1.6rem 1.8rem; border-radius:24px; overflow:hidden;
+            background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
+            transition:transform .5s cubic-bezier(.22,1,.36,1), background .5s ease, border-color .5s ease, box-shadow .5s ease;}
+        .ent-card::after{content:''; position:absolute; inset:0; border-radius:24px; opacity:0;
+            background:radial-gradient(120% 120% at 100% 0%, rgba(58,63,176,.25), transparent 60%);
+            transition:opacity .5s ease; pointer-events:none;}
+        .ent-card:hover{transform:translateY(-6px); background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.16);
+            box-shadow:0 30px 60px -25px rgba(58,63,176,.5);}
+        .ent-card:hover::after{opacity:1;}
+        .ent-card-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.6rem;}
+        .ent-ico{width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+            background:rgba(58,63,176,0.18); border:1px solid rgba(255,255,255,0.10); transition:background .5s ease;}
+        .ent-ico svg{width:22px; height:22px; fill:none; stroke:#fff; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; opacity:.9;}
+        .ent-card:hover .ent-ico{background:rgba(58,63,176,0.4);}
+        .ent-idx{font-family:'Space Grotesk',monospace; font-size:.72rem; font-weight:600; letter-spacing:.12em; color:rgba(255,255,255,0.25);}
+
+        /* Card stack (preuve sociale) */
+        .card-stack{position:relative; width:100%; max-width:330px; aspect-ratio:1/1; margin:0 auto;}
+        .stat-card{position:absolute; inset:0; transition:all .8s cubic-bezier(.23,1,.32,1); border-radius:32px;}
+        .card-front{z-index:20; transform:rotate(3deg) translateX(10px);}
+        .card-back{z-index:10; transform:rotate(-6deg) translateX(-10px) scale(.95);}
+        .card-stack:hover .card-front{transform:rotate(-6deg) translateX(-20px) scale(.95); z-index:10;}
+        .card-stack:hover .card-back{transform:rotate(3deg) translateX(10px) scale(1); z-index:20;}
+
+        /* ---------- NAVBAR (floating glass — HVA) ---------- */
+        #navbar{transition:transform .4s ease;}
+        .nav-pill{background:rgba(10,10,11,.55); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%);
+            border:1px solid rgba(255,255,255,.12); border-radius:100px;
+            box-shadow:0 10px 34px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08); transition:background .4s ease;}
+        #navbar.scrolled .nav-pill{background:rgba(10,10,11,.82);}
+        .nav-link{font-family:'Space Grotesk',monospace; text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:500; color:rgba(255,255,255,.62); transition:color .3s ease; white-space:nowrap;}
+        .nav-link:hover{color:#fff;}
+        .live-dot{width:7px; height:7px; border-radius:50%; background:var(--accent-bright); box-shadow:0 0 10px var(--accent-bright); animation:pulse 2s ease infinite;}
+
+        /* ---------- HERO HVA (dark) ---------- */
+        .hero-h1{font-family:'Space Grotesk',monospace; font-weight:700; letter-spacing:-.04em; line-height:1.0; font-size:clamp(2.5rem,6.2vw,5.4rem);}
+        .hl-blue{display:inline-block; background:var(--accent-bright); color:#fff; padding:0 .14em; border-radius:14px;
+            box-decoration-break:clone; -webkit-box-decoration-break:clone; box-shadow:0 16px 44px -14px rgba(58,63,176,.75);}
+        .hl-soft{display:inline-block; background:#fff; color:var(--ink); padding:0 .12em; border-radius:14px;
+            box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+        .btn-ghost-d{border-radius:999px; font-weight:700; color:#fff; border:1px solid rgba(255,255,255,.22);
+            background:rgba(255,255,255,.04); backdrop-filter:blur(8px); transition:all .35s cubic-bezier(.22,1,.36,1);}
+        .btn-ghost-d:hover{border-color:rgba(255,255,255,.5); background:rgba(255,255,255,.09); transform:translateY(-2px);}
+        .hero-kicker{display:inline-flex; align-items:center; gap:.55rem; padding:.5rem 1rem; border-radius:999px;
+            background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); font-family:'Space Grotesk',monospace;
+            font-size:.74rem; letter-spacing:.05em; color:rgba(255,255,255,.85); backdrop-filter:blur(8px);}
+        .hk-dot{width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 0 3px rgba(74,222,128,.22); animation:pulse 2s ease infinite;}
+        .hero-map{width:150px; height:74px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.16);
+            box-shadow:0 14px 30px -16px rgba(0,0,0,.6); filter:grayscale(.35); transition:filter .5s ease; flex-shrink:0;}
+        .hero-map:hover{filter:grayscale(0);}
+        .hero-map iframe{width:100%; height:100%; border:0; pointer-events:none;}
+        @media(max-width:640px){.hero-map{display:none;}}
+
+        /* ---------- SOCIALS ---------- */
+        .social-ic{width:42px; height:42px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+            border:1px solid rgba(255,255,255,.14); color:rgba(255,255,255,.7); transition:all .3s ease;}
+        .social-ic:hover{border-color:var(--accent-bright); color:#fff; background:rgba(58,63,176,.25); transform:translateY(-2px);}
+        .social-ic svg{width:19px; height:19px;}
+
+        /* ---------- IMPACT — registre éditorial ---------- */
+        .impact-meta{display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:1.1rem; margin-bottom:3.5rem;}
+        .mega-num{font-family:'Space Grotesk',monospace; font-weight:700; letter-spacing:-.05em; color:#fff; font-size:clamp(5rem,11vw,11rem); line-height:.82;}
+        .mega-num sup{font-size:.32em; letter-spacing:-.02em; margin-left:.4rem; vertical-align:super; color:var(--accent-bright);}
+        .ledger{display:flex; flex-direction:column;}
+        .ledger-row{display:grid; grid-template-columns:2.4rem minmax(6.5rem,auto) 1fr auto; align-items:baseline; gap:1.6rem; padding:1.7rem .5rem; border-top:1px solid rgba(255,255,255,.10); transition:background .4s ease, padding-left .4s ease;}
+        .ledger-row:last-child{border-bottom:1px solid rgba(255,255,255,.10);}
+        .ledger-row:hover{background:rgba(255,255,255,.025); padding-left:1.4rem;}
+        .ledger-idx{font-family:'Space Grotesk',monospace; font-size:.7rem; letter-spacing:.12em; color:rgba(255,255,255,.28);}
+        .ledger-num{font-family:'Space Grotesk',monospace; font-weight:700; font-size:2.7rem; line-height:1; letter-spacing:-.03em; color:#fff; transition:text-shadow .4s ease;}
+        .ledger-num sup{font-size:.42em; vertical-align:super; color:var(--accent-bright); margin-left:.15rem;}
+        .ledger-row:hover .ledger-num{text-shadow:0 0 34px rgba(58,63,176,.55);}
+        .ledger-label{color:rgba(255,255,255,.55); font-size:1.02rem; align-self:center;}
+        .ledger-ctx{justify-self:end; align-self:center; font-family:'Space Grotesk',monospace; text-transform:uppercase; font-size:.66rem; letter-spacing:.16em; color:rgba(255,255,255,.32);}
+        @media(max-width:640px){
+            .impact-meta{margin-bottom:2.25rem; padding-bottom:.9rem;}
+            .ledger-row{grid-template-columns:auto 1fr; gap:.15rem 1rem; padding:1.25rem .25rem;}
+            .ledger-idx,.ledger-ctx{display:none;}
+            .ledger-num{grid-column:1; grid-row:1; font-size:1.85rem;}
+            .ledger-label{grid-column:2; grid-row:1; align-self:center; font-size:.92rem;}
+        }
+
+        /* ---------- DISPOSITION ---------- */
+        .sticky-col{position:sticky; top:7.5rem; align-self:start;}
+        @media(max-width:1023px){.sticky-col{position:static; top:auto;}}
+        .ghost-num{font-family:'Space Grotesk',monospace; font-weight:700; letter-spacing:-.04em; line-height:.8;
+            -webkit-text-stroke:1.5px rgba(0,0,0,.10); color:transparent;}
+        .ghost-num.on-dark{-webkit-text-stroke:1.5px rgba(255,255,255,.12);}
+
+        /* ---------- TARIFS v2 ---------- */
+        .plan{position:relative; border-radius:26px; padding:2.1rem 2rem 2rem; display:flex; flex-direction:column;
+            transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;}
+        .plan-soft{background:#fff; border:1px solid var(--line-l); box-shadow:0 16px 40px -30px rgba(10,10,11,.3);}
+        .plan-soft:hover{transform:translateY(-6px); box-shadow:0 34px 64px -32px rgba(10,10,11,.32);}
+        .plan-feat{background:var(--accent); color:#fff; box-shadow:0 44px 80px -34px rgba(19,22,68,.75);}
+        .plan-feat:hover{transform:translateY(-9px);}
+        .plan-price{font-family:'Space Grotesk',monospace; font-weight:700; letter-spacing:-.03em; line-height:1;}
+        .check-li{display:flex; align-items:center; gap:.65rem; font-size:.9rem; font-weight:600;}
+        .check-li svg{width:16px; height:16px; flex-shrink:0; fill:none; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
+        .reassure{display:flex; align-items:flex-start; gap:.7rem; color:var(--txt-l2); font-size:.92rem; line-height:1.45;}
+        .reassure svg{flex-shrink:0; width:18px; height:18px; fill:none; stroke:var(--accent); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; margin-top:1px;}
+
+        /* ---------- TÉMOIGNAGES ---------- */
+        .vmarquee{height:560px; overflow:hidden; position:relative;
+            -webkit-mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent);
+            mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent);}
+        .vtrack{display:flex; flex-direction:column; gap:1.1rem; animation:vscroll 32s linear infinite;}
+        .vmarquee:hover .vtrack{animation-play-state:paused;}
+        @keyframes vscroll{from{transform:translateY(0)} to{transform:translateY(calc(-50% - .55rem))}}
+        .t-card{background:#fff; border:1px solid var(--line-l); border-radius:20px; padding:1.5rem 1.6rem;
+            box-shadow:0 14px 34px -28px rgba(10,10,11,.3);}
+        .monogram{width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff; display:flex;
+            align-items:center; justify-content:center; font-family:'Space Grotesk',monospace; font-weight:700; font-size:.95rem; flex-shrink:0;}
+        .stars{display:inline-flex; gap:2px;}
+        .stars svg{width:15px; height:15px; fill:var(--accent);}
+
+        /* ---------- FAQ (dark override) ---------- */
+        .world-dark .faq-item{border-bottom:1px solid rgba(255,255,255,.10);}
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+<div class="noise"></div>
+
+<!-- ============ NAV ============ -->
+<nav id="navbar" class="fixed top-4 md:top-5 left-1/2 -translate-x-1/2 z-50 text-white w-[calc(100%-1.25rem)] md:w-auto">
+    <div class="nav-pill flex items-center justify-between gap-3 md:gap-7 pl-4 md:pl-6 pr-2 md:pr-2.5 py-2 md:py-2.5">
+        <a href="#hero" class="block w-24 md:w-28 hover:opacity-80 transition shrink-0">
+            <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto" width="112" height="32" fetchpriority="high">
+        </a>
+        <div class="hidden md:flex items-center gap-7 px-2">
+            <a href="#decors" class="nav-link">Décors</a>
+            <a href="#tarifs" class="nav-link">Tarifs</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+        <div class="flex items-center gap-3 md:gap-4 shrink-0">
+            <a href="https://podblend.podyx.com/login" target="_blank" rel="noopener noreferrer" class="nav-link">Se connecter</a>
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent inline-flex items-center gap-2 px-4 md:px-5 py-2.5 text-xs uppercase tracking-[0.13em]">
+                Réserver
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ 1 · HERO (NOIR) ============ -->
+<section id="hero" class="world-dark min-h-[100dvh] w-full overflow-hidden flex flex-col">
+    <div class="absolute inset-0 z-0">
+        <video id="heroVideo" aria-hidden="true" poster="hero-poster.webp" preload="auto" autoplay muted loop playsinline webkit-playsinline class="object-cover w-full h-full scale-105 opacity-90">
+            <source src="hero-video.webm" type="video/webm">
+            <source src="hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink"></div>
+    </div>
+
+    <div class="relative z-10 flex-1 flex flex-col justify-center max-w-container mx-auto w-full px-6 md:px-12 pt-32 pb-40">
+        <h1 class="hero-h1 text-white mb-8 max-w-4xl">
+            <span class="block">Vous avez déjà vu des</span>
+            <span class="block"><span class="hl-blue">vidéos</span> qui captent.</span>
+            <span class="block"><span class="hl-soft">Pas juste</span> qui décorent.</span>
+        </h1>
+        <p class="lead text-white/80 mb-9 max-w-xl">
+            Un studio clé en main pour podcasts, vidéos d'entreprise, ads et contenus professionnels. Matériel cinéma inclus, opérateur sur place.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 mb-10">
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent group inline-flex items-center gap-3 px-7 py-4 text-sm">
+                <span>Réserver une session</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#decors" class="btn-ghost-d inline-flex items-center gap-2 px-7 py-4 text-sm">Voir les décors</a>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="hero-kicker"><span class="hk-dot"></span> Studio · Gennevilliers · Paris</span>
+            <div class="hero-map">
+                <iframe title="Studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" loading="lazy"></iframe>
+            </div>
+            <div class="flex items-center gap-5 pl-1">
+                <div><div class="display text-xl text-white">+100</div><div class="text-[0.7rem] text-white/50 font-medium">entreprises</div></div>
+                <div class="w-px h-7 bg-white/15"></div>
+                <div><div class="display text-xl text-white">+1 Md</div><div class="text-[0.7rem] text-white/50 font-medium">vues cumulées</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bandeau logos (marquee) -->
+    <div class="relative z-10 w-full border-t border-white/10 bg-black/60 backdrop-blur-sm py-3">
+        <div class="max-w-container mx-auto px-6 md:px-12 flex items-center gap-8">
+            <span class="label text-white/40 shrink-0 hidden md:block">Ils nous font confiance</span>
+            <div class="flex overflow-hidden relative w-full flex-1 mask-x">
+                <div class="flex gap-12 md:gap-16 w-full">
+                    <div class="flex animate-scroll items-center gap-12 md:gap-16 shrink-0 min-w-full justify-around">
+                        <img src="1.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 1" width="100" height="28">
+                        <img src="2.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 2" width="100" height="28">
+                        <img src="3.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 3" width="100" height="20">
+                        <img src="4.webp" class="h-5 md:h-6 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 4" width="100" height="24">
+                        <img src="5.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 5" width="100" height="28">
+                        <img src="6.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 6" width="100" height="20">
+                        <img src="7.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 7" width="100" height="20">
+                        <img src="8.webp" class="h-6 md:h-7 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition" alt="Logo 8" width="100" height="28">
+                        <img src="9.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 9" width="100" height="28">
+                    </div>
+                    <div class="flex animate-scroll items-center gap-12 md:gap-16 shrink-0 min-w-full justify-around" aria-hidden="true">
+                        <img src="1.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
+                        <img src="2.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
+                        <img src="3.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="20" loading="lazy">
+                        <img src="4.webp" class="h-5 md:h-6 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="24" loading="lazy">
+                        <img src="5.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
+                        <img src="6.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="20" loading="lazy">
+                        <img src="7.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="20" loading="lazy">
+                        <img src="8.webp" class="h-6 md:h-7 w-auto object-contain grayscale opacity-50" alt="" width="100" height="28" loading="lazy">
+                        <img src="9.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- seam noir -> blanc -->
+<div class="seam-d-to-l"></div>
+
+<!-- ============ 2 · DÉCORS (BLANC — explicatif) ============ -->
+<section id="decors" class="world-light grid-light py-20 md:py-28 overflow-hidden">
+    <div class="max-w-container mx-auto px-6 md:px-12">
+        <div class="flex items-end justify-between gap-8 mb-12 md:mb-16 border-b border-[var(--line-l)] pb-8" data-reveal>
+            <div class="max-w-xl">
+                <span class="label text-accent mb-5 block">Choose your vibe</span>
+                <h2 class="display text-4xl md:text-5xl text-ink mb-4">Quatre décors,<br>une même exigence.</h2>
+                <p class="lead text-[var(--txt-l2)]">Chaque plateau est éclairé, calibré et prêt à tourner. Vous choisissez l'ambiance, on s'occupe du reste.</p>
+            </div>
+            <span class="ghost-num text-[7rem] md:text-[10rem] hidden md:block leading-none select-none">01</span>
+        </div>
+
+        <div class="decor-row flex flex-col md:flex-row w-full h-auto md:h-[560px] gap-4" data-reveal>
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="decor block relative rounded-[2rem] overflow-hidden group card-soft">
+                <img src="gotham-_1_.webp" srcset="gotham-mobile.webp 744w, gotham-_1_.webp 1600w" sizes="(max-width:768px) 100vw, 25vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105" alt="Le Gotham" loading="lazy" width="800" height="600">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                <div class="absolute bottom-7 left-7 decor-meta transition duration-500">
+                    <h3 class="display text-2xl md:text-3xl text-white mb-3">Le Gotham</h3>
+                    <span class="pill pill-d backdrop-blur-md">Néons bleus</span>
+                </div>
+            </a>
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="decor block relative rounded-[2rem] overflow-hidden group card-soft">
+                <img src="santorini-_1_.webp" srcset="santorini-mobile.webp 744w, santorini-_1_.webp 1600w" sizes="(max-width:768px) 100vw, 25vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105" alt="Le Santorini" loading="lazy" width="800" height="600">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                <div class="absolute bottom-7 left-7 decor-meta transition duration-500">
+                    <h3 class="display text-2xl md:text-3xl text-white mb-3">Le Santorini</h3>
+                    <span class="pill pill-d backdrop-blur-md">Méditerranéen</span>
+                </div>
+            </a>
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="decor block relative rounded-[2rem] overflow-hidden group card-soft">
+                <img src="library-_1_.webp" srcset="library-mobile.webp 744w, library-_1_.webp 1600w" sizes="(max-width:768px) 100vw, 25vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105" alt="Library" loading="lazy" width="800" height="600">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                <div class="absolute bottom-7 left-7 decor-meta transition duration-500">
+                    <h3 class="display text-2xl md:text-3xl text-white mb-3">Library</h3>
+                    <span class="pill pill-d backdrop-blur-md">Vintage · Cosy</span>
+                </div>
+            </a>
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="decor block relative rounded-[2rem] overflow-hidden group card-soft">
+                <img src="podblend_cinematic_cam1_desk.webp" srcset="podblend_cinematic_cam1_mobile.webp 744w, podblend_cinematic_cam1_desk.webp 1600w" sizes="(max-width:768px) 100vw, 25vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105" alt="Library Desk" loading="lazy" width="800" height="600">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                <div class="absolute bottom-7 left-7 decor-meta transition duration-500">
+                    <h3 class="display text-2xl md:text-3xl text-white mb-3">Library Desk</h3>
+                    <span class="pill pill-d backdrop-blur-md">Pro · Débat</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- seam blanc -> noir -->
+<div class="seam-l-to-d"></div>
+
+<!-- ============ 3 · ENTREPRISES & CRÉATEURS (NOIR — bento formats) ============ -->
+<section class="world-dark grid-dark py-20 md:py-28 overflow-hidden">
+    <div class="glow glow-accent w-[480px] h-[480px] left-1/2 -translate-x-1/2 -top-20"></div>
+    <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-10">
+        <!-- Colonne gauche figée -->
+        <div class="lg:col-span-4 sticky-col" data-reveal>
+            <span class="label text-white/50 mb-6 block">Entreprises & Créateurs</span>
+            <h2 class="display text-4xl md:text-5xl text-white leading-[1.05] mb-6">Tous les formats,<br>un seul studio.</h2>
+            <p class="text-white/55 leading-relaxed max-w-xs mb-8">Du podcast hebdo à la campagne de marque : on s'adapte à votre objectif, pas l'inverse.</p>
+            <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent inline-flex items-center gap-2 px-6 py-3 text-xs uppercase tracking-[0.13em]">
+                Voir les disponibilités
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+        <!-- Grille de formats à droite -->
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+            <article class="ent-card" data-reveal style="transition-delay:0ms">
+                <div class="ent-card-top">
+                    <div class="ent-ico"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></div>
+                    <span class="ent-idx">01</span>
+                </div>
+                <div><h3 class="display text-xl text-white mb-1.5">Podcasts</h3><p class="text-white/50 text-sm leading-relaxed">Talk-shows, formats long & extraits courts, prêts à publier.</p></div>
+            </article>
+
+            <article class="ent-card" data-reveal style="transition-delay:70ms">
+                <div class="ent-card-top">
+                    <div class="ent-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/></svg></div>
+                    <span class="ent-idx">02</span>
+                </div>
+                <div><h3 class="display text-xl text-white mb-1.5">Vidéos d'entreprise</h3><p class="text-white/50 text-sm leading-relaxed">Présentation produit, culture interne, recrutement.</p></div>
+            </article>
+
+            <article class="ent-card" data-reveal style="transition-delay:140ms">
+                <div class="ent-card-top">
+                    <div class="ent-ico"><svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+                    <span class="ent-idx">03</span>
+                </div>
+                <div><h3 class="display text-xl text-white mb-1.5">Publicités & Ads</h3><p class="text-white/50 text-sm leading-relaxed">Formats verticaux performants pensés pour la conversion.</p></div>
+            </article>
+
+            <article class="ent-card" data-reveal style="transition-delay:0ms">
+                <div class="ent-card-top">
+                    <div class="ent-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+                    <span class="ent-idx">04</span>
+                </div>
+                <div><h3 class="display text-xl text-white mb-1.5">Interviews</h3><p class="text-white/50 text-sm leading-relaxed">Multi-caméras, plusieurs intervenants, débats cadrés.</p></div>
+            </article>
+
+            <article class="ent-card" data-reveal style="transition-delay:70ms">
+                <div class="ent-card-top">
+                    <div class="ent-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+                    <span class="ent-idx">05</span>
+                </div>
+                <div><h3 class="display text-xl text-white mb-1.5">Institutions</h3><p class="text-white/50 text-sm leading-relaxed">Contenus officiels, prises de parole, communication publique.</p></div>
+            </article>
+
+            <article class="ent-card" data-reveal style="transition-delay:140ms">
+                <div class="ent-card-top">
+                    <div class="ent-ico"><svg viewBox="0 0 24 24"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+                    <span class="ent-idx">06</span>
+                </div>
+                <div><h3 class="display text-xl text-white mb-1.5">Marques</h3><p class="text-white/50 text-sm leading-relaxed">Brand content premium, séries de contenus récurrents.</p></div>
+            </article>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- seam noir -> blanc -->
+<div class="seam-d-to-soft"></div>
+
+<!-- ============ 4 · TARIFS (BLANC — refonte conversion) ============ -->
+<section id="tarifs" class="world-soft py-20 md:py-28 overflow-hidden relative">
+    <div class="max-w-container mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-12 items-start">
+
+        <!-- Colonne valeur figée -->
+        <div class="lg:col-span-4 sticky-col" data-reveal>
+            <span class="label text-accent mb-6 block">Tarifs</span>
+            <h2 class="display text-4xl md:text-5xl text-ink leading-[1.05] mb-5">Un prix clair.<br>Zéro surprise.</h2>
+            <p class="text-[var(--txt-l2)] leading-relaxed max-w-xs mb-8">Studio, matériel cinéma et opérateur toujours inclus. Vous payez le temps de tournage — pas les extras.</p>
+
+            <div class="switch mb-9" style="background:rgba(19,22,68,.05); border-color:var(--line-l);">
+                <button class="switch-btn active" id="btn-video" style="color:var(--txt-l2)" onclick="switchPricing('video')">VIDÉO</button>
+                <button class="switch-btn" id="btn-audio" style="color:var(--txt-l2)" onclick="switchPricing('audio')">AUDIO</button>
+            </div>
+
+            <ul class="space-y-4 mb-9">
+                <li class="reassure"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Sans engagement — réservation à l'heure.</li>
+                <li class="reassure"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Annulation gratuite jusqu'à 48h avant.</li>
+                <li class="reassure"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Matériel & opérateur compris dans chaque formule.</li>
+            </ul>
+
+            <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-accent hover:gap-3 transition-all">
+                Besoin d'un devis sur mesure ?
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <!-- Plans -->
+        <div class="lg:col-span-8">
+          <div class="flex flex-wrap gap-4 md:gap-5 items-stretch" data-reveal>
+            <!-- VIDÉO -->
+            <div class="plan plan-soft video-card flex-1 min-w-[250px]">
+                <span class="label text-[var(--txt-l2)] mb-4 block">Initiale</span>
+                <div class="flex items-end gap-1.5 mb-1"><span class="plan-price text-5xl text-ink">100€</span><span class="text-[var(--txt-l2)] text-sm mb-1.5">/ heure</span></div>
+                <p class="text-[var(--txt-l2)] text-sm mb-6">L'essentiel pour tourner propre.</p>
+                <div class="h-px bg-[var(--line-l)] mb-6"></div>
+                <ul class="space-y-3.5 mb-8 flex-1 text-gray-800">
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Opérateur sur place</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> 3 caméras Sony A7IV</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> 4 micros Shure MV7</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Fichiers bruts livrés sous 48h</li>
+                </ul>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="block text-center w-full py-3.5 rounded-full border-2 border-accent text-accent font-bold uppercase text-xs tracking-[0.18em] hover:bg-accent hover:text-white transition">Réserver</a>
+            </div>
+
+            <div class="plan plan-feat video-card flex-1 min-w-[250px] overflow-hidden">
+                <div class="glow glow-accent w-56 h-56 -top-12 -right-12 opacity-40"></div>
+                <div class="relative flex items-center justify-between mb-4">
+                    <span class="label text-blue-200">Édition</span>
+                    <span class="pill" style="background:#fff;color:var(--accent)">★ Best-seller</span>
+                </div>
+                <div class="relative flex items-end gap-1.5 mb-1"><span class="plan-price text-5xl text-white">130€</span><span class="text-blue-200 text-sm mb-1.5">/ heure</span></div>
+                <p class="relative text-blue-200 text-sm mb-6">Le tournage + le montage, prêt à publier.</p>
+                <div class="relative h-px bg-white/15 mb-6"></div>
+                <ul class="relative space-y-3.5 mb-8 flex-1 text-white">
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Tout de l'offre Initiale</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Pré-montage horizontal</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Synchro audio / vidéo</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Livré prêt à publier</li>
+                </ul>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-light relative block text-center w-full py-3.5 uppercase text-xs tracking-[0.18em]">Réserver cette formule</a>
+            </div>
+
+            <div class="plan plan-soft video-card flex-1 min-w-[250px]">
+                <span class="label text-[var(--txt-l2)] mb-4 block">Complète</span>
+                <div class="flex items-end gap-1.5 mb-1"><span class="plan-price text-5xl text-ink">320€</span><span class="text-[var(--txt-l2)] text-sm mb-1.5">/ épisode</span></div>
+                <p class="text-[var(--txt-l2)] text-sm mb-6">On gère tout, de A à Z.</p>
+                <div class="h-px bg-[var(--line-l)] mb-6"></div>
+                <ul class="space-y-3.5 mb-8 flex-1 text-gray-800">
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Tournage + dérush</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Montage & mixage</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Intro dynamique</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Colorimétrie cinéma</li>
+                </ul>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="block text-center w-full py-3.5 rounded-full border-2 border-accent text-accent font-bold uppercase text-xs tracking-[0.18em] hover:bg-accent hover:text-white transition">Choisir</a>
+            </div>
+
+            <!-- AUDIO -->
+            <div class="plan plan-soft audio-card flex-1 min-w-[250px] hidden">
+                <span class="label text-[var(--txt-l2)] mb-4 block">Audio Simple</span>
+                <div class="flex items-end gap-1.5 mb-1"><span class="plan-price text-5xl text-ink">50€</span><span class="text-[var(--txt-l2)] text-sm mb-1.5">/ heure</span></div>
+                <p class="text-[var(--txt-l2)] text-sm mb-6">Le son, carré, sans détour.</p>
+                <div class="h-px bg-[var(--line-l)] mb-6"></div>
+                <ul class="space-y-3.5 mb-8 flex-1 text-gray-800">
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Opérateur sur place</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> 4 micros Shure MV7+</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Console Rodecaster Pro</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#131644"><path d="M20 6 9 17l-5-5"/></svg> Fichiers le jour même</li>
+                </ul>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="block text-center w-full py-3.5 rounded-full border-2 border-accent text-accent font-bold uppercase text-xs tracking-[0.18em] hover:bg-accent hover:text-white transition">Réserver</a>
+            </div>
+
+            <div class="plan plan-feat audio-card flex-1 min-w-[250px] overflow-hidden hidden">
+                <div class="glow glow-accent w-56 h-56 -top-12 -right-12 opacity-40"></div>
+                <div class="relative flex items-center justify-between mb-4">
+                    <span class="label text-blue-200">Audio +</span>
+                    <span class="pill" style="background:#fff;color:var(--accent)">Pro</span>
+                </div>
+                <div class="relative flex items-end gap-1.5 mb-1"><span class="plan-price text-5xl text-white">100€</span><span class="text-blue-200 text-sm mb-1.5">/ heure</span></div>
+                <p class="relative text-blue-200 text-sm mb-6">Enregistré, nettoyé et monté.</p>
+                <div class="relative h-px bg-white/15 mb-6"></div>
+                <ul class="relative space-y-3.5 mb-8 flex-1 text-white">
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Tout de l'offre Audio Simple</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Nettoyage des bruits</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Montage intro / outro</li>
+                    <li class="check-li"><svg viewBox="0 0 24 24" stroke="#fff"><path d="M20 6 9 17l-5-5"/></svg> Mixage professionnel</li>
+                </ul>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-light relative block text-center w-full py-3.5 uppercase text-xs tracking-[0.18em]">Réserver cette formule</a>
+            </div>
+          </div>
+
+          <p class="text-[var(--txt-l2)] text-xs mt-6 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Paiement sécurisé · Confirmation immédiate · Facture entreprise</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- seam blanc -> noir -->
+<div class="seam-soft-to-d"></div>
+
+<!-- ============ 5 · IMPACT & VIRALITÉ (NOIR — registre éditorial) ============ -->
+<section class="world-dark py-20 md:py-28 overflow-hidden relative">
+    <div class="glow glow-accent w-[640px] h-[640px] -right-52 top-0 opacity-40"></div>
+    <div class="max-w-container mx-auto px-6 md:px-12 relative z-10">
+
+        <div class="impact-meta" data-reveal>
+            <span class="label" style="color:rgba(255,255,255,.5)">Impact &amp; Viralité</span>
+            <span class="flex items-center gap-2 label" style="color:rgba(255,255,255,.4)"><span class="live-dot"></span> En chiffres</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-12 items-center">
+            <!-- Chiffre géant ancré à gauche -->
+            <div class="lg:col-span-5" data-reveal>
+                <div class="mega-num">+1<sup>Md</sup></div>
+                <p class="display text-2xl text-white mt-6">de vues cumulées.</p>
+                <p class="text-white/50 mt-5 max-w-sm leading-relaxed">Sur l'ensemble des contenus produits aux côtés de nos clients. La preuve qu'un format studio capte — et garde — l'attention.</p>
+            </div>
+
+            <!-- Registre de stats à droite -->
+            <div class="lg:col-span-7" data-reveal style="transition-delay:120ms">
+                <div class="ledger">
+                    <div class="ledger-row">
+                        <span class="ledger-idx">01</span>
+                        <span class="ledger-num">+100</span>
+                        <span class="ledger-label">entreprises accompagnées</span>
+                        <span class="ledger-ctx">Réseau actif</span>
+                    </div>
+                    <div class="ledger-row">
+                        <span class="ledger-idx">02</span>
+                        <span class="ledger-num">48<sup>h</sup></span>
+                        <span class="ledger-label">pour récupérer vos rushes bruts</span>
+                        <span class="ledger-ctx">Maximum</span>
+                    </div>
+                    <div class="ledger-row">
+                        <span class="ledger-idx">03</span>
+                        <span class="ledger-num">4</span>
+                        <span class="ledger-label">décors éclairés, prêts à tourner</span>
+                        <span class="ledger-ctx">Au choix</span>
+                    </div>
+                    <div class="ledger-row">
+                        <span class="ledger-idx">04</span>
+                        <span class="ledger-num">100<sup>%</sup></span>
+                        <span class="ledger-label">clé en main, opérateur sur place</span>
+                        <span class="ledger-ctx">Toujours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- seam noir -> blanc -->
+<div class="seam-d-to-l"></div>
+
+<!-- ============ 6 · TÉMOIGNAGES (BLANC — citation + colonne défilante) ============ -->
+<section class="world-light grid-light py-20 md:py-28 overflow-hidden">
+    <div class="max-w-container mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-12 items-center">
+        <!-- Citation maîtresse, ancrée à gauche -->
+        <div class="lg:col-span-5" data-reveal>
+            <div class="flex items-center justify-between mb-8">
+                <span class="label text-accent">Ils témoignent</span>
+                <span class="flex items-center gap-2 text-sm font-bold text-ink"><span class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span> 5/5 sur Google · +100 clients</span>
+            </div>
+            <p class="display text-3xl md:text-[2.6rem] leading-[1.15] text-ink mb-8">“J'ai fait plusieurs studios de podcast sur Paris et, pour être totalement honnête, <span class="text-accent">PodBlend est surement le meilleur.</span>”</p>
+            <div class="flex items-center gap-4">
+                <div class="monogram">SR</div>
+                <div>
+                    <div class="font-bold text-ink">Simon RTM</div>
+                    <div class="text-[var(--txt-l2)] text-sm">Créateur de podcast · Paris</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne défilante de témoignages -->
+        <div class="lg:col-span-7" data-reveal style="transition-delay:120ms">
+          <div class="vmarquee">
+            <div class="vtrack">
+                <!-- série (6 avis Google réels) -->
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Meilleur studio de podcast, je ne veux rien savoir. Le service de prémontage est un vrai plus pour gagner du temps, notamment sur le multicam.”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">YR</div><div><div class="font-bold text-ink text-sm">Yacine Redissi</div><div class="text-[var(--txt-l2)] text-xs">Créateur de contenu</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Livraison en moins de 24h de mon pré-montage, je suis impressionnée de la réactivité ! Je recommande sans hésiter.”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">OC</div><div><div class="font-bold text-ink text-sm">Office Cooperation Group</div><div class="text-[var(--txt-l2)] text-xs">Projet entreprise</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Réservé dans un cadre professionnel : extrêmement satisfait de la qualité de l'accueil, du professionnalisme de l'équipe technique et du rendu !”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">NA</div><div><div class="font-bold text-ink text-sm">N. Amzil</div><div class="text-[var(--txt-l2)] text-xs">Local Guide · Projet pro</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Studio parfaitement équipé et décors soignés. 4 épisodes de podcast réalisés : le résultat est de grande qualité ! Bravo 👍”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">CH</div><div><div class="font-bold text-ink text-sm">Cam H.</div><div class="text-[var(--txt-l2)] text-xs">Local Guide · Podcast</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Passés tourner notre toute première VSL : agréablement accueillis et très bien conseillés par Baya. Je recommande ce studio.”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">TI</div><div><div class="font-bold text-ink text-sm">Tommy Ibanez</div><div class="text-[var(--txt-l2)] text-xs">Local Guide · Vidéo VSL</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Excellent service de tournage et montage vidéo. Décors beaux et chaleureux, équipe accueillante. Je ne tourne plus que là-bas :)”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">SB</div><div><div class="font-bold text-ink text-sm">Sabrina Berrima</div><div class="text-[var(--txt-l2)] text-xs">Création vidéo</div></div></div></div>
+                <!-- duplication pour boucle continue -->
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Meilleur studio de podcast, je ne veux rien savoir. Le service de prémontage est un vrai plus pour gagner du temps, notamment sur le multicam.”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">YR</div><div><div class="font-bold text-ink text-sm">Yacine Redissi</div><div class="text-[var(--txt-l2)] text-xs">Créateur de contenu</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Livraison en moins de 24h de mon pré-montage, je suis impressionnée de la réactivité ! Je recommande sans hésiter.”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">OC</div><div><div class="font-bold text-ink text-sm">Office Cooperation Group</div><div class="text-[var(--txt-l2)] text-xs">Projet entreprise</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Réservé dans un cadre professionnel : extrêmement satisfait de la qualité de l'accueil, du professionnalisme de l'équipe technique et du rendu !”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">NA</div><div><div class="font-bold text-ink text-sm">N. Amzil</div><div class="text-[var(--txt-l2)] text-xs">Local Guide · Projet pro</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Studio parfaitement équipé et décors soignés. 4 épisodes de podcast réalisés : le résultat est de grande qualité ! Bravo 👍”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">CH</div><div><div class="font-bold text-ink text-sm">Cam H.</div><div class="text-[var(--txt-l2)] text-xs">Local Guide · Podcast</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Passés tourner notre toute première VSL : agréablement accueillis et très bien conseillés par Baya. Je recommande ce studio.”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">TI</div><div><div class="font-bold text-ink text-sm">Tommy Ibanez</div><div class="text-[var(--txt-l2)] text-xs">Local Guide · Vidéo VSL</div></div></div></div>
+                <div class="t-card"><div class="stars mb-3"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div><p class="text-gray-700 leading-relaxed mb-4">“Excellent service de tournage et montage vidéo. Décors beaux et chaleureux, équipe accueillante. Je ne tourne plus que là-bas :)”</p><div class="flex items-center gap-3"><div class="monogram" style="width:38px;height:38px;font-size:.82rem">SB</div><div><div class="font-bold text-ink text-sm">Sabrina Berrima</div><div class="text-[var(--txt-l2)] text-xs">Création vidéo</div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- seam blanc -> noir -->
+<div class="seam-l-to-d"></div>
+
+<!-- ============ 7 · FAQ (NOIR — split sticky) ============ -->
+<section id="faq" class="world-dark grid-dark py-20 md:py-28 relative overflow-hidden">
+    <div class="glow glow-accent w-[440px] h-[440px] -left-40 bottom-0 opacity-25"></div>
+    <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-10 items-start">
+        <!-- Colonne gauche figée -->
+        <div class="lg:col-span-4 sticky-col" data-reveal>
+            <span class="label text-white/50 mb-6 block">Questions fréquentes</span>
+            <h2 class="display text-4xl md:text-5xl text-white leading-[1.05] mb-6">Tout ce qu'il<br>faut savoir.</h2>
+            <p class="text-white/55 leading-relaxed max-w-xs mb-8">Une autre question ? L'équipe répond en quelques minutes.</p>
+            <a href="contact.html" class="btn-accent inline-flex items-center gap-2 px-6 py-3 text-xs uppercase tracking-[0.13em]">
+                Nous contacter
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+        <!-- Accordéon à droite -->
+        <div class="lg:col-span-8 flex flex-col" data-reveal>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-trigger">
+                    <div class="flex items-baseline gap-5 md:gap-8">
+                        <span class="label text-white/40">01</span>
+                        <h3 class="display text-xl md:text-2xl text-white">Matériel inclus ?</h3>
+                    </div>
+                    <div class="faq-icon text-white/40"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-content"><p class="text-white/60 text-base md:text-lg leading-relaxed pr-4 max-w-2xl">Tout est prêt à votre arrivée. Le studio comprend 4 micros Shure MV7, la console Rodecaster Pro II et l'éclairage cinéma. Pour l'option vidéo, 3 caméras Sony A7IV sont installées et calibrées.</p></div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-trigger">
+                    <div class="flex items-baseline gap-5 md:gap-8">
+                        <span class="label text-white/40">02</span>
+                        <h3 class="display text-xl md:text-2xl text-white">Livraison des fichiers</h3>
+                    </div>
+                    <div class="faq-icon text-white/40"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-content"><p class="text-white/60 text-base md:text-lg leading-relaxed pr-4 max-w-2xl">Vous pouvez repartir avec vos cartes SD immédiatement après la séance. Sinon, nous uploadons les rushes bruts (WAV/MP4) sur un serveur sécurisé sous 24h.</p></div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-trigger">
+                    <div class="flex items-baseline gap-5 md:gap-8">
+                        <span class="label text-white/40">03</span>
+                        <h3 class="display text-xl md:text-2xl text-white">Annulation & retards</h3>
+                    </div>
+                    <div class="faq-icon text-white/40"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-content"><p class="text-white/60 text-base md:text-lg leading-relaxed pr-4 max-w-2xl">Annulation gratuite jusqu'à 48h avant la session. En cas de retard, la session se termine à l'heure prévue si une autre réservation suit.</p></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ============ 8 · CTA FINAL (NOIR — éditorial, miroir du hero) ============ -->
+<section class="world-dark grid-dark pb-24 overflow-hidden relative">
+    <div class="glow glow-accent w-[620px] h-[620px] -right-40 -top-20 opacity-35"></div>
+    <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
+      <div class="border-t border-white/10 pt-16 md:pt-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-10 items-end">
+            <div class="lg:col-span-7" data-reveal>
+                <span class="label text-white/50 mb-6 block">Prêt à tourner</span>
+                <h2 class="display text-5xl md:text-7xl text-white leading-[0.98] mb-9">Réservez votre<br>première session.</h2>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent group inline-flex items-center gap-3 px-8 py-4 text-sm">
+                    <span>Réserver une session</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="lg:col-span-5" data-reveal style="transition-delay:120ms">
+                <p class="text-white/55 leading-relaxed max-w-sm lg:ml-auto lg:text-right">Studio clé en main à Gennevilliers. Vous arrivez, vous parlez, on s'occupe du reste — du tournage aux fichiers prêts à publier.</p>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER (NOIR — signé) ============ -->
+<footer class="world-dark border-t border-white/5 py-16">
+    <div class="max-w-container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+        <div>
+            <a href="#hero" class="block w-28 mb-5 hover:opacity-80 transition">
+                <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto" loading="lazy" width="112" height="32">
+            </a>
+            <p class="text-white/50 text-sm max-w-xs mb-6 leading-relaxed">L'espace de création premium à Paris. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
+            <div class="flex items-center gap-3 mb-6">
+                <a href="https://www.instagram.com/podblend.fr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Podblend" class="social-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/podblend/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Podblend" class="social-ic">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18.5h2.67V9.5zM7 5.88a1.55 1.55 0 1 0 0 3.09 1.55 1.55 0 0 0 0-3.09zM18.34 18.5v-4.93c0-2.64-1.41-3.87-3.29-3.87a2.84 2.84 0 0 0-2.57 1.41h-.04V9.5H9.84V18.5h2.67v-4.46c0-1.18.22-2.32 1.68-2.32 1.44 0 1.46 1.35 1.46 2.39v4.39h2.69z"/></svg>
+                </a>
+            </div>
+            <div class="text-white/40 text-xs tracking-wide border-t border-white/10 pt-4 max-w-[220px]">
+                <p>© 2024-2026 Podblend. Tous droits réservés.</p>
+                <p class="mt-3 pt-3 border-t border-white/5">Made by <a href="https://horizon-visual-agency.com/" target="_blank" rel="noopener" class="text-white/60 font-bold hover:text-white transition">Horizon Visual Agency</a></p>
+            </div>
+        </div>
+        <div class="flex flex-col gap-3 text-sm text-white/55 font-bold tracking-wide">
+            <a href="legal.html" class="hover:text-white hover:translate-x-1 inline-block transition">Mentions Légales</a>
+            <a href="politique-confidentialite.html" class="hover:text-white hover:translate-x-1 inline-block transition">Politique de confidentialité</a>
+            <a href="cgv.html" class="hover:text-white hover:translate-x-1 inline-block transition">CGV</a>
+            <a href="contact.html" class="hover:text-white hover:translate-x-1 inline-block transition">Contact</a>
+        </div>
+        <div class="w-full md:w-56 h-32 rounded-2xl overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 md:justify-self-end shadow-2xl">
+            <iframe title="Carte studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Vidéo hero
+    document.addEventListener('DOMContentLoaded', () => {
+        const v = document.getElementById('heroVideo');
+        if (v) { v.muted = true; v.play().catch(() => {}); }
+    });
+
+    // Navbar scroll-aware
+    const nav = document.getElementById('navbar');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // FAQ
+    function toggleFaq(el) {
+        const content = el.querySelector('.faq-content');
+        const isActive = el.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.faq-content').style.maxHeight = '0';
+        });
+        if (!isActive) {
+            el.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }
+    }
+
+    // Pricing switch
+    function switchPricing(type) {
+        const video = document.querySelectorAll('.video-card');
+        const audio = document.querySelectorAll('.audio-card');
+        const bv = document.getElementById('btn-video');
+        const ba = document.getElementById('btn-audio');
+        if (type === 'video') {
+            video.forEach(c => c.classList.remove('hidden'));
+            audio.forEach(c => c.classList.add('hidden'));
+            bv.classList.add('active'); ba.classList.remove('active');
+            bv.style.color = '#0A0A0B'; ba.style.color = 'var(--txt-l2)';
+        } else {
+            video.forEach(c => c.classList.add('hidden'));
+            audio.forEach(c => c.classList.remove('hidden'));
+            ba.classList.add('active'); bv.classList.remove('active');
+            ba.style.color = '#0A0A0B'; bv.style.color = 'var(--txt-l2)';
+        }
+    }
+    function scrollPrices(dir) {
+        const c = document.getElementById('pricing-slider');
+        const w = 360 + 24;
+        c.scrollBy({ left: dir === 'left' ? -w : w, behavior: 'smooth' });
+    }
+
+    // Reveal générique au scroll
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // Entreprises rows — reveal cascadé
+    const entRows = document.querySelectorAll('[data-ent]');
+    const entIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const idx = Array.from(entRows).indexOf(entry.target);
+                setTimeout(() => entry.target.classList.add('in'), idx * 150);
+            } else {
+                entry.target.classList.remove('in');
+            }
+        });
+    }, { threshold: 0.6 });
+    entRows.forEach(r => entIO.observe(r));
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité - Podblend</title>
+    <link rel="stylesheet" href="output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            card: '#121212',
+                            deep: '#131644',
+                            accent: '#3b82f6',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- GLOBAL NOISE --- */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* --- BACKGROUNDS --- */
+        .bg-grid-dark {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* --- CONTENT TYPOGRAPHY --- */
+        .legal-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .legal-content h2 { font-size: 1.875rem; }
+        }
+        .legal-content h2 i {
+            color: #131644;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .legal-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content p {
+            color: #d1d5db;
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+        }
+        .legal-content ul {
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+        .legal-content ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .legal-content strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .legal-content a {
+            color: #3b82f6;
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            transition: text-decoration-color 0.3s ease;
+        }
+        .legal-content a:hover {
+            text-decoration-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#131644] selection:text-white font-sans bg-grid-dark min-h-screen flex flex-col">
+
+    <div class="noise-overlay"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(19,22,68,0.2)_0%,transparent_60%)] pointer-events-none z-0"></div>
+
+    <!-- NAV -->
+    <nav class="w-full z-50 top-0 left-0 px-4 md:px-6 py-6 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md sticky">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="index.html" class="block w-20 md:w-28 hover:opacity-80 transition cursor-pointer">
+                <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto">
+            </a>
+            
+            <a href="index.html" class="bg-white text-black px-5 py-2.5 text-xs md:text-sm rounded-full font-bold hover:bg-[#131644] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Retour à l'accueil
+            </a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="relative z-10 flex-grow pt-12 pb-24 px-6 max-w-4xl mx-auto w-full">
+        <div class="animate-fade-in-up">
+            
+            <div class="mb-12 md:mb-16 mt-8">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">Politique de Confidentialité<span class="text-[#131644]">.</span></h1>
+                <p class="text-gray-400 font-mono text-sm tracking-widest uppercase">/// Protection de vos données</p>
+            </div>
+            
+            <!-- Article Container -->
+            <article class="bg-[#121212] border border-white/5 rounded-[2rem] p-6 md:p-12 shadow-2xl relative overflow-hidden legal-content">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#131644] via-blue-900 to-transparent"></div>
+                
+                <h2><i class="fa-solid fa-bullseye"></i> Le but de cette politique de confidentialité</h2>
+                <p>Le but de cette politique de confidentialité est d'informer les utilisateurs de notre site des données personnelles que nous recueillons ainsi que des informations suivantes, le cas échéant :</p>
+                <ul>
+                    <li>Les données personnelles que nous recueillerons</li>
+                    <li>L’utilisation des données recueillies</li>
+                    <li>Qui a accès aux données recueillies</li>
+                    <li>Les droits des utilisateurs du site</li>
+                    <li>La politique de cookies du site</li>
+                </ul>
+                <p>Cette politique de confidentialité s'applique en complément des conditions générales d’utilisation de notre site.</p>
+
+                <h2><i class="fa-solid fa-scale-balanced"></i> Lois applicables</h2>
+                <p>Conformément au Règlement général sur la protection des données (RGPD), cette politique de confidentialité est conforme aux normes suivantes.</p>
+                <p><strong>Les données à caractère personnel doivent être :</strong></p>
+                <ul>
+                    <li>traitées de manière licite, loyale et transparente au regard de la personne concernée (licéité, loyauté, transparence) ;</li>
+                    <li>collectées pour des finalités déterminées, explicites et légitimes, et ne pas être traitées ultérieurement d'une manière incompatible avec ces finalités ; le traitement ultérieur à des fins archivistiques dans l'intérêt public, à des fins de recherche scientifique ou historique ou à des fins statistiques n'est pas considéré comme incompatible avec les finalités initiales (limitation des finalités) ;</li>
+                    <li>adéquates, pertinentes et limitées à ce qui est nécessaire au regard des finalités pour lesquelles elles sont traitées (minimisation des données) ;</li>
+                    <li>exactes et, si nécessaire, tenues à jour ; toutes les mesures raisonnables doivent être prises pour que les données à caractère personnel qui sont inexactes soient effacées ou rectifiées sans tarder (exactitude) ;</li>
+                    <li>conservées sous une forme permettant l'identification des personnes concernées pendant une durée n'excédant pas celle nécessaire au regard des finalités pour lesquelles elles sont traitées (limitation de la conservation) ;</li>
+                    <li>traitées de façon à garantir une sécurité appropriée des données à caractère personnel, y compris la protection contre le traitement non autorisé ou illicite et contre la perte, la destruction ou les dégâts d'origine accidentelle (intégrité et confidentialité).</li>
+                </ul>
+                <p><strong>Le traitement n'est licite que si, et dans la mesure où, au moins une des conditions suivantes est remplie :</strong></p>
+                <ul>
+                    <li>la personne concernée a consenti au traitement de ses données à caractère personnel pour une ou plusieurs finalités spécifiques ;</li>
+                    <li>le traitement est nécessaire à l'exécution d'un contrat auquel la personne concernée est partie ou à l'exécution de mesures précontractuelles ;</li>
+                    <li>le traitement est nécessaire au respect d'une obligation légale à laquelle le responsable du traitement est soumis ;</li>
+                    <li>le traitement est nécessaire à la sauvegarde des intérêts vitaux de la personne concernée ou d'une autre personne physique ;</li>
+                    <li>le traitement est nécessaire à l'exécution d'une mission d'intérêt public ou relevant de l'exercice de l'autorité publique ;</li>
+                    <li>le traitement est nécessaire aux fins des intérêts légitimes poursuivis par le responsable du traitement ou par un tiers.</li>
+                </ul>
+
+                <h2><i class="fa-solid fa-check-double"></i> Consentement</h2>
+                <p>Les utilisateurs conviennent qu’en utilisant notre site, ils acceptent :</p>
+                <ul>
+                    <li>les conditions énoncées dans la présente politique de confidentialité et</li>
+                    <li>la collecte, l’utilisation et la conservation des données énumérées dans la présente politique.</li>
+                </ul>
+
+                <h2><i class="fa-solid fa-database"></i> Données collectées</h2>
+                <h3>Données collectées automatiquement</h3>
+                <p>Nous ne collectons aucune donnée automatiquement sur notre site.</p>
+                
+                <h3>Données recueillies de façon non automatique</h3>
+                <p>Nous pouvons également collecter les données suivantes lorsque vous effectuez certaines fonctions sur notre site :</p>
+                <ul>
+                    <li>Prénom et nom</li>
+                    <li>Email</li>
+                    <li>Numéro de téléphone</li>
+                    <li>Information de paiement</li>
+                </ul>
+                <p>Ces données peuvent être recueillies au moyen des méthodes suivantes :</p>
+                <ul>
+                    <li>Création d'un compte</li>
+                    <li>Réservation</li>
+                </ul>
+                <p>Veuillez noter que nous ne collectons que les données qui nous aident à atteindre l’objectif énoncé dans cette politique de confidentialité. Nous ne recueillerons pas de données supplémentaires sans vous en informer au préalable.</p>
+
+                <h2><i class="fa-solid fa-gears"></i> Comment nous utilisons les données personnelles</h2>
+                <p>Les données personnelles recueillies sur notre site seront utilisées uniquement aux fins précisées dans la présente politique ou indiquées sur les pages pertinentes de notre site. Nous n’utiliserons pas vos données au-delà de ce que nous divulguerons.</p>
+                <p>Les données que nous recueillons lorsque l’utilisateur exécute certaines fonctions peuvent être utilisées aux fins suivantes :</p>
+                <ul>
+                    <li>Réservation et gestion des sessions en studio.</li>
+                </ul>
+
+                <h2><i class="fa-solid fa-share-nodes"></i> Avec qui nous partageons les données personnelles</h2>
+                <h3>Employés</h3>
+                <p>Nous pouvons divulguer à tout membre de notre organisation les données utilisateur dont ce membre a raisonnablement besoin pour réaliser les objectifs énoncés dans la présente politique.</p>
+                
+                <h3>Tierces parties</h3>
+                <p>Nous pouvons partager les données utilisateur avec des tiers aux fins strictement nécessaires à la réalisation de nos services. Les tiers ne seront pas en mesure d’accéder aux données des utilisateurs au-delà de ce qui est raisonnablement nécessaire pour atteindre l’objectif donné.</p>
+                
+                <h3>Autres divulgations</h3>
+                <p>Nous nous engageons à ne pas vendre ou partager vos données avec des tiers, sauf dans les cas suivants :</p>
+                <ul>
+                    <li>si la loi l'exige</li>
+                    <li>si elle est requise pour toute procédure judiciaire</li>
+                    <li>pour prouver ou protéger nos droits légaux</li>
+                    <li>à des acheteurs ou des acheteurs potentiels de cette société dans le cas où nous cherchons à vendre la société</li>
+                </ul>
+                <p>Si vous consultez des hyperliens de notre site vers un autre site, veuillez noter que nous ne sommes pas responsables et n’avons pas de contrôle sur leurs politiques et pratiques de confidentialité.</p>
+
+                <h2><i class="fa-solid fa-clock"></i> Combien de temps nous stockons les données personnelles</h2>
+                <p>Les données personnelles sont conservées aussi longtemps que nécessaire pour les fins pour lesquelles elles ont été collectées, ou pour se conformer à nos obligations légales. Une fois cette durée écoulée, les données seront supprimées de manière sécurisée.</p>
+
+                <h2><i class="fa-solid fa-shield-halved"></i> Comment nous protégeons vos données personnelles</h2>
+                <p>Toutes les informations sensibles sont chiffrées à l'aide de technologies robustes. Lorsque vous vous connectez à notre site, vos données sont transmises via une connexion sécurisée (HTTPS), garantissant qu'elles sont protégées contre toute interception ou manipulation.</p>
+                <p>Bien que nous prenions toutes les précautions raisonnables pour sécuriser les données de nos utilisateurs et garantir leur protection, il subsiste toujours un certain risque. L'Internet dans son ensemble peut parfois présenter des vulnérabilités, et il nous est donc impossible d'assurer une sécurité absolue des données des utilisateurs au-delà de ce qui est raisonnablement réalisable.</p>
+                <p>En cas de violation de la sécurité affectant vos renseignements personnels, nous vous en informerons conformément aux obligations légales et prendrons les mesures nécessaires pour en limiter les risques.</p>
+
+                <h2><i class="fa-solid fa-child"></i> Mineurs</h2>
+                <p>Le RGPD précise que les personnes de moins de 15 ans sont considérées comme des mineurs aux fins de la collecte de données. Les mineurs doivent avoir le consentement d’un représentant légal pour que leurs données soient recueillies, traitées et utilisées.</p>
+
+                <h2><i class="fa-solid fa-user-shield"></i> Vos droits en tant qu’utilisateur</h2>
+                <p>En vertu du RGPD, les utilisateurs ont les droits suivants sur leurs données en tant que personnes concernées :</p>
+                <ul>
+                    <li>Droit d’accès</li>
+                    <li>Droit de rectification</li>
+                    <li>Droit à l’effacement</li>
+                    <li>Droit de restreindre le traitement</li>
+                    <li>Droit à la portabilité des données</li>
+                    <li>Droit d'objection</li>
+                </ul>
+                <p>Vous trouverez de plus amples informations sur ces droits au chapitre 3 (article 12-23) du RGPD.</p>
+
+                <h2><i class="fa-solid fa-envelope"></i> Modifier, supprimer ou contester les données</h2>
+                <p>Si vous souhaitez que vos renseignements soient supprimés ou modifiés d’une façon ou d’une autre, veuillez communiquer avec notre agent de protection des données personnelles ici :</p>
+                <div class="bg-white/5 p-6 rounded-xl mt-4 border border-white/10 inline-block">
+                    <p class="font-bold text-white mb-1">Abdelkarim Ghebenteni</p>
+                    <p class="text-[#3b82f6]"><a href="mailto:ghebenteni.a@gmail.com">ghebenteni.a@gmail.com</a></p>
+                </div>
+
+                <h2><i class="fa-solid fa-cookie-bite"></i> Politique sur les cookies</h2>
+                <p>Un cookie est un petit fichier stocké sur le disque dur d’un utilisateur par un site. Il permet de collecter des données concernant les habitudes de navigation et les interactions de l’utilisateur avec le site.</p>
+                <p>Nous utilisons les types de cookies suivants sur notre site :</p>
+                <h3>Cookies fonctionnels</h3>
+                <p>Nous les utilisons pour mémoriser toutes les sélections que vous faites sur notre site afin qu’elles soient sauvegardées pour vos prochaines visites.</p>
+                <p>Vous pouvez choisir d’être averti chaque fois qu’un cookie est transmis ou de désactiver complètement les cookies en modifiant les paramètres de votre navigateur Internet. Cependant, veuillez noter que cela pourrait affecter certaines fonctionnalités du site et diminuer la qualité de votre expérience utilisateur.</p>
+
+                <h2><i class="fa-solid fa-pen-to-square"></i> Modifications</h2>
+                <p>Cette politique de confidentialité peut être modifiée de temps à autre afin de maintenir la conformité avec la loi et de tenir compte de tout changement à notre processus de collecte de données. Nous recommandons à nos utilisateurs de vérifier notre politique de confidentialité de temps à autre pour s’assurer qu’ils soient informés de toute mise à jour. Au besoin, nous pouvons informer les utilisateurs par courriel des changements apportés à cette politique.</p>
+
+                <h2><i class="fa-solid fa-address-card"></i> Contact</h2>
+                <p>Si vous avez des questions à nous poser, n’hésitez pas à communiquer avec nous en utilisant ce qui suit :</p>
+                <div class="space-y-3 mt-6 bg-white/5 p-6 rounded-xl border border-white/10">
+                    <p class="flex items-center gap-3"><i class="fa-solid fa-phone w-5 text-gray-400"></i> <a href="tel:+33659674796" class="hover:text-white transition">06 59 67 47 96</a></p>
+                    <p class="flex items-center gap-3"><i class="fa-solid fa-envelope w-5 text-gray-400"></i> <a href="mailto:contact@podblend.fr" class="hover:text-white transition">contact@podblend.fr</a></p>
+                    <p class="flex items-center gap-3"><i class="fa-solid fa-location-dot w-5 text-gray-400"></i> 12 Pl. Indira Gandhi, 92230 Gennevilliers, France</p>
+                </div>
+                
+                <p class="mt-8 pt-6 border-t border-white/10 text-sm text-gray-500 font-mono">
+                    Date d’entrée en vigueur de la présente politique : le 14 novembre 2024
+                </p>
+
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER MINIMAL -->
+    <footer class="relative z-10 py-10 border-t border-white/5 bg-[#020202]">
+        <div class="max-w-7xl mx-auto px-6 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-600 text-xs tracking-wider font-medium">© 2024 Podblend. Tous droits réservés.</div>
+            <a href="index.html" class="text-xs text-gray-400 hover:text-white transition-colors duration-300 font-bold tracking-wide">Retour à l'accueil</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+```

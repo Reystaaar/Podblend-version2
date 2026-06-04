@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGV - Podblend</title>
+    <link rel="stylesheet" href="output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            card: '#121212',
+                            deep: '#131644',
+                            accent: '#3b82f6',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- GLOBAL NOISE --- */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* --- BACKGROUNDS --- */
+        .bg-grid-dark {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* --- CONTENT TYPOGRAPHY --- */
+        .legal-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .legal-content h2 { font-size: 1.875rem; }
+        }
+        .legal-content h2 i {
+            color: #131644;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .legal-content p {
+            color: #d1d5db;
+            margin-bottom: 1.25rem;
+            line-height: 1.75;
+        }
+        .legal-content ul {
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+        .legal-content ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .legal-content strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#131644] selection:text-white font-sans bg-grid-dark min-h-screen flex flex-col">
+
+    <div class="noise-overlay"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(19,22,68,0.2)_0%,transparent_60%)] pointer-events-none z-0"></div>
+
+    <!-- NAV -->
+    <nav class="w-full z-50 top-0 left-0 px-4 md:px-6 py-6 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md sticky">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="index.html" class="block w-20 md:w-28 hover:opacity-80 transition cursor-pointer">
+                <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto">
+            </a>
+            
+            <a href="index.html" class="bg-white text-black px-5 py-2.5 text-xs md:text-sm rounded-full font-bold hover:bg-[#131644] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Retour à l'accueil
+            </a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="relative z-10 flex-grow pt-12 pb-24 px-6 max-w-4xl mx-auto w-full">
+        <div class="animate-fade-in-up">
+            
+            <div class="mb-12 md:mb-16 mt-8">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">Conditions Générales de Vente<span class="text-[#131644]">.</span></h1>
+                <p class="text-gray-400 font-mono text-sm tracking-widest uppercase">/// Podblend – Studio de création de contenu</p>
+            </div>
+            
+            <!-- Article Container -->
+            <article class="bg-[#121212] border border-white/5 rounded-[2rem] p-6 md:p-12 shadow-2xl relative overflow-hidden legal-content">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#131644] via-blue-900 to-transparent"></div>
+                
+                <h2><i class="fa-solid fa-file-contract"></i> 1. Objet</h2>
+                <p>Les présentes Conditions Générales de Vente (CGV) régissent l’ensemble des prestations proposées par Podblend, incluant notamment la location de studio, les prestations audiovisuelles et les services associés.</p>
+                <p>Toute réservation effectuée via le site internet de Podblend implique l’acceptation pleine et entière des présentes CGV.</p>
+
+                <h2><i class="fa-solid fa-desktop"></i> 2. Réservation en ligne</h2>
+                <p>Les réservations s’effectuent exclusivement via le site internet de Podblend.</p>
+                <p>La réservation est considérée comme ferme et définitive après :</p>
+                <ul>
+                    <li>Validation du créneau sélectionné</li>
+                    <li>Paiement intégral du montant indiqué au moment de la commande</li>
+                </ul>
+                <p>Un email de confirmation est adressé au client après validation du paiement.</p>
+                <p>Aucune prestation ne sera réalisée sans paiement complet préalable.</p>
+
+                <h2><i class="fa-solid fa-tag"></i> 3. Tarifs</h2>
+                <p>Les prix sont indiqués en euros, toutes taxes comprises (TTC).</p>
+                <p>Podblend se réserve le droit de modifier ses tarifs à tout moment.<br>
+                Le tarif applicable est celui en vigueur au moment de la réservation.</p>
+
+                <h2><i class="fa-solid fa-clock"></i> 4. Retard & Dépassement horaire</h2>
+                <p>Le temps de réservation commence à l’horaire convenu lors de la commande.</p>
+                <p>Tout retard du client ne donnera lieu à aucune prolongation automatique.</p>
+                <p>Tout dépassement horaire fera l’objet d’une facturation complémentaire au tarif en vigueur, par heure entamée, sous réserve de disponibilité du studio.</p>
+
+                <h2><i class="fa-solid fa-calendar-xmark"></i> 5. Annulation & Report</h2>
+                <p>Toute annulation effectuée <strong>moins de 48 heures</strong> avant la date de la prestation ne donnera lieu à aucun remboursement.</p>
+                <p>Toute annulation effectuée <strong>au moins 48 heures</strong> avant la prestation pourra faire l’objet d’un remboursement sous 5 jours ouvrés.</p>
+                <p>Toute demande de report devra être validée par Podblend et reste soumise à disponibilité.</p>
+                <p>Conformément à l’article L221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour les prestations de services d’activités de loisirs fournies à une date ou selon une périodicité déterminée.</p>
+
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> 6. Responsabilité & Dégradations</h2>
+                <p>Le client est responsable de toute dégradation, casse ou perte affectant le matériel audiovisuel, le mobilier ou les équipements mis à disposition.</p>
+                <p>Les frais de réparation ou remplacement seront facturés sur présentation de justificatifs.</p>
+
+                <h2><i class="fa-solid fa-suitcase"></i> 7. Effets personnels</h2>
+                <p>Podblend décline toute responsabilité en cas de perte, vol ou détérioration des effets personnels du client ou de ses accompagnants.</p>
+
+                <h2><i class="fa-solid fa-camera"></i> 8. Droit à l’image & Contenus</h2>
+                <p>Le client est seul responsable des contenus produits dans les locaux de Podblend, notamment du respect :</p>
+                <ul>
+                    <li>Du droit à l’image</li>
+                    <li>Des autorisations des personnes filmées</li>
+                    <li>Des droits d’auteur</li>
+                </ul>
+                <p>Podblend ne pourra être tenu responsable de tout litige relatif au contenu enregistré.</p>
+
+                <h2><i class="fa-solid fa-lock"></i> 9. Confidentialité</h2>
+                <p>Podblend s’engage à ne pas exploiter les contenus produits sans l’accord écrit du client.</p>
+                <p>Sauf opposition écrite préalable, Podblend pourra utiliser des images d’ambiance ou extraits non sensibles à des fins de communication et de promotion.</p>
+
+                <h2><i class="fa-solid fa-shield-halved"></i> 10. Sécurité & Règlement intérieur</h2>
+                <p>Le client s’engage à respecter les consignes de sécurité des locaux.</p>
+                <p>Il est strictement interdit de fumer, vapoter ou consommer de la nourriture dans les studios sans autorisation préalable.</p>
+                <p>Podblend se réserve le droit d’interrompre une prestation en cas de comportement inapproprié ou dangereux, sans possibilité de remboursement.</p>
+
+                <h2><i class="fa-solid fa-bolt"></i> 11. Force majeure</h2>
+                <p>Podblend ne pourra être tenu responsable d’un retard ou d’une inexécution résultant d’un cas de force majeure (incendie, grève, catastrophe naturelle, panne technique majeure, etc.).</p>
+
+                <h2><i class="fa-solid fa-gavel"></i> 12. Loi applicable & Litiges</h2>
+                <p>Les présentes CGV sont régies par le droit français.</p>
+                <p>Tout litige sera soumis aux juridictions compétentes du ressort du siège social de Podblend.</p>
+
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER MINIMAL -->
+    <footer class="relative z-10 py-10 border-t border-white/5 bg-[#020202]">
+        <div class="max-w-7xl mx-auto px-6 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-600 text-xs tracking-wider font-medium">© 2024 Podblend. Tous droits réservés.</div>
+            <div class="flex gap-6">
+                <a href="legal.html" class="text-xs text-gray-500 hover:text-white transition-colors duration-300 font-bold tracking-wide">Mentions Légales</a>
+                <a href="politique-confidentialite.html" class="text-xs text-gray-500 hover:text-white transition-colors duration-300 font-bold tracking-wide">Confidentialité</a>
+                <a href="index.html" class="text-xs text-gray-400 hover:text-white transition-colors duration-300 font-bold tracking-wide">Retour à l'accueil</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

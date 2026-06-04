@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Podblend</title>
+    <link rel="stylesheet" href="output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            card: '#121212',
+                            deep: '#131644',
+                            accent: '#3b82f6',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .bg-grid-dark {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#131644] selection:text-white font-sans bg-grid-dark min-h-screen flex flex-col">
+
+    <div class="noise-overlay"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(19,22,68,0.2)_0%,transparent_50%)] pointer-events-none z-0"></div>
+
+    <!-- NAV -->
+    <nav class="w-full z-50 top-0 left-0 px-4 md:px-6 py-6 border-b border-white/5 bg-[#050505]/80 backdrop-blur-md sticky">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <a href="index.html" class="block w-20 md:w-28 hover:opacity-80 transition cursor-pointer">
+                <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto">
+            </a>
+            
+            <a href="index.html" class="bg-white text-black px-5 py-2.5 text-xs md:text-sm rounded-full font-bold hover:bg-[#131644] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Retour à l'accueil
+            </a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="relative z-10 flex-grow pt-12 pb-24 px-6 max-w-4xl mx-auto w-full flex flex-col justify-center">
+        <div class="animate-fade-in-up mt-8">
+            
+            <div class="mb-12 md:mb-16 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">Contactez-nous<span class="text-[#131644]">.</span></h1>
+                <p class="text-gray-400 font-mono text-sm tracking-widest uppercase">/// Discutons de votre projet</p>
+            </div>
+            
+            <!-- Carte de contact repensée (sans formulaire complexe) -->
+            <div class="bg-[#121212] border border-white/5 rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#131644] via-blue-900 to-transparent"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div class="w-16 h-16 rounded-full bg-[#131644] text-white flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(19,22,68,0.5)] group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-phone text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Téléphone</h3>
+                            <a href="tel:+33659674796" class="text-white font-bold text-lg hover:text-[#3b82f6] transition-colors">06 59 67 47 96</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div class="w-16 h-16 rounded-full bg-[#131644] text-white flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(19,22,68,0.5)] group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Email</h3>
+                            <a href="mailto:contact@podblend.fr" class="text-white font-bold text-lg hover:text-[#3b82f6] transition-colors">contact@podblend.fr</a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center gap-4 group">
+                        <div class="w-16 h-16 rounded-full bg-[#131644] text-white flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(19,22,68,0.5)] group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-location-dot text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Studio</h3>
+                            <p class="text-white font-bold text-lg">12 Pl. Indira Gandhi<br><span class="text-base font-normal text-gray-300">92230 Gennevilliers</span></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Carte Map Iframe en pleine largeur -->
+                <div class="w-full h-80 rounded-2xl overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+                    <iframe src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER MINIMAL -->
+    <footer class="relative z-10 py-10 border-t border-white/5 bg-[#020202]">
+        <div class="max-w-7xl mx-auto px-6 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-600 text-xs tracking-wider font-medium">© 2024 Podblend. Tous droits réservés.</div>
+            <div class="flex gap-6">
+                <a href="legal.html" class="text-xs text-gray-500 hover:text-white transition-colors duration-300 font-bold tracking-wide">Mentions Légales</a>
+                <a href="politique-confidentialite.html" class="text-xs text-gray-500 hover:text-white transition-colors duration-300 font-bold tracking-wide">Confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

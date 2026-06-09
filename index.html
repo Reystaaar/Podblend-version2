@@ -6,36 +6,16 @@
     <title>Podblend — Studios d'enregistrement premium à Paris</title>
     <meta name="description" content="Podblend : studio d'enregistrement premium à Paris pour podcasts, vidéos d'entreprise, ads et interviews. Matériel haut de gamme inclus, clé en main.">
 
+    <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="icon" type="image/webp" href="favicon.webp">
-    <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Plus Jakarta Sans', 'sans-serif'],
-              display: ['Space Grotesk', 'monospace'],
-            },
-            colors: {
-              ink: '#0A0A0B',
-              inksoft: '#111114',
-              paper: '#FFFFFF',
-              papersoft: '#FAFAFA',
-              accent: '#131644',
-            },
-            maxWidth: { container: '1280px' },
-          }
-        }
-      }
-    </script>
+    <link rel="stylesheet" href="output.css">
 
     <style>
         :root{
@@ -285,6 +265,7 @@
         /* ---------- TARIFS v2 ---------- */
         .plan{position:relative; border-radius:26px; padding:2.1rem 2rem 2rem; display:flex; flex-direction:column;
             transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;}
+        .plan.hidden{display:none;}
         .plan-soft{background:#fff; border:1px solid var(--line-l); box-shadow:0 16px 40px -30px rgba(10,10,11,.3);}
         .plan-soft:hover{transform:translateY(-6px); box-shadow:0 34px 64px -32px rgba(10,10,11,.32);}
         .plan-feat{background:var(--accent); color:#fff; box-shadow:0 44px 80px -34px rgba(19,22,68,.75);}
@@ -332,7 +313,7 @@
             <a href="#faq" class="nav-link">FAQ</a>
         </div>
         <div class="flex items-center gap-3 md:gap-4 shrink-0">
-            <a href="https://podblend.podyx.com/login" target="_blank" rel="noopener noreferrer" class="nav-link">Se connecter</a>
+            <a href="https://podblend.podyx.com/login" target="_blank" rel="noopener noreferrer" class="nav-link max-[374px]:hidden">Se connecter</a>
             <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent inline-flex items-center gap-2 px-4 md:px-5 py-2.5 text-xs uppercase tracking-[0.13em]">
                 Réserver
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -417,7 +398,7 @@
         <div class="flex items-end justify-between gap-8 mb-12 md:mb-16 border-b border-[var(--line-l)] pb-8" data-reveal>
             <div class="max-w-xl">
                 <span class="label text-accent mb-5 block">Choose your vibe</span>
-                <h2 class="display text-4xl md:text-5xl text-ink mb-4">Cinq décors,<br>une même exigence.</h2>
+                <h2 class="display text-3xl md:text-4xl text-ink mb-4">Cinq décors,<br>une même exigence.</h2>
                 <p class="lead text-[var(--txt-l2)]">Chaque plateau est éclairé, calibré et prêt à tourner. Vous choisissez l'ambiance, on s'occupe du reste.</p>
             </div>
         </div>
@@ -478,7 +459,7 @@
         <!-- Colonne gauche figée -->
         <div class="lg:col-span-4 sticky-col" data-reveal>
             <span class="label text-white/50 mb-6 block">Entreprises & Créateurs</span>
-            <h2 class="display text-4xl md:text-5xl text-white leading-[1.05] mb-6">Tous les formats,<br>un seul studio.</h2>
+            <h2 class="display text-3xl md:text-4xl text-white leading-[1.05] mb-6">Tous les formats,<br>un seul studio.</h2>
             <p class="text-white/55 leading-relaxed max-w-xs mb-8">Du podcast hebdo à la campagne de marque : on s'adapte à votre objectif, pas l'inverse.</p>
             <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent inline-flex items-center gap-2 px-6 py-3 text-xs uppercase tracking-[0.13em]">
                 Voir les disponibilités
@@ -550,7 +531,7 @@
         <!-- Colonne valeur figée -->
         <div class="lg:col-span-4 sticky-col" data-reveal>
             <span class="label text-accent mb-6 block">Tarifs</span>
-            <h2 class="display text-4xl md:text-5xl text-ink leading-[1.05] mb-5">Un prix clair.<br>Zéro surprise.</h2>
+            <h2 class="display text-3xl md:text-4xl text-ink leading-[1.05] mb-5">Un prix clair.<br>Zéro surprise.</h2>
             <p class="text-[var(--txt-l2)] leading-relaxed max-w-xs mb-8">Studio, matériel cinéma et opérateur toujours inclus. Vous payez le temps de tournage — pas les extras.</p>
 
             <div class="switch mb-9" style="background:rgba(19,22,68,.05); border-color:var(--line-l);">
@@ -773,7 +754,7 @@
         <!-- Colonne gauche figée -->
         <div class="lg:col-span-4 sticky-col" data-reveal>
             <span class="label text-white/50 mb-6 block">Questions fréquentes</span>
-            <h2 class="display text-4xl md:text-5xl text-white leading-[1.05] mb-6">Tout ce qu'il<br>faut savoir.</h2>
+            <h2 class="display text-3xl md:text-4xl text-white leading-[1.05] mb-6">Tout ce qu'il<br>faut savoir.</h2>
             <p class="text-white/55 leading-relaxed max-w-xs mb-8">Une autre question ? L'équipe répond en quelques minutes.</p>
             <a href="contact.html" class="btn-accent inline-flex items-center gap-2 px-6 py-3 text-xs uppercase tracking-[0.13em]">
                 Nous contacter
@@ -825,7 +806,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-10 items-end">
             <div class="lg:col-span-7" data-reveal>
                 <span class="label text-white/50 mb-6 block">Prêt à tourner</span>
-                <h2 class="display text-5xl md:text-7xl text-white leading-[0.98] mb-9">Réservez votre<br>première session.</h2>
+                <h2 class="display text-4xl md:text-5xl text-white leading-[1.02] mb-9">Réservez votre<br>première session.</h2>
                 <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent group inline-flex items-center gap-3 px-8 py-4 text-sm">
                     <span>Réserver une session</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>

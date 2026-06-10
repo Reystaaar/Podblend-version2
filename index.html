@@ -26,8 +26,8 @@
             --line-d:rgba(255,255,255,0.10); --line-l:#E5E7EB;
             --accent:#131644; --accent-bright:#3b82f6;
         }
-        html,body{background:var(--ink);}
-        body{color:var(--txt-d); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden;}
+        html,body{background:var(--ink); overflow-x:clip;}
+        body{color:var(--txt-d); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:clip;}
 
         /* ---------- TYPOGRAPHIE ---------- */
         .display{font-family:'Space Grotesk',monospace; letter-spacing:-0.03em; font-weight:700; line-height:1.02;}
@@ -45,7 +45,7 @@
         .world-soft{background:var(--paper-soft); color:var(--txt-l); position:relative;}
 
         /* Halos / glows (monde noir uniquement) */
-        .glow{position:absolute; border-radius:9999px; filter:blur(90px); pointer-events:none; opacity:0.5;}
+        .glow{position:absolute; border-radius:9999px; filter:blur(90px); pointer-events:none; opacity:0.5; transform:translateZ(0); will-change:transform;}
         .glow-accent{background:radial-gradient(circle, rgba(59,130,246,0.5), transparent 70%);}
         /* Allègements mobile : moins de repaint (fluidité FAQ, scroll) */
         @media(max-width:768px){
@@ -89,6 +89,10 @@
         .btn-accent:hover{transform:translateY(-2px); box-shadow:0 18px 45px -12px rgba(19,22,68,.85);}
         .btn-accent svg{transition:transform .35s cubic-bezier(.22,1,.36,1);}
         .btn-accent:hover svg{transform:translateX(4px);}
+        /* CTA final — panneau accent (distinct de la FAQ) */
+        .cta-panel{background:linear-gradient(135deg,#2742c9 0%,#18205f 52%,#0d1138 100%); border:1px solid rgba(255,255,255,.10); box-shadow:0 50px 110px -50px rgba(39,66,201,.85);}
+        .cta-panel-btn{background:#fff; color:var(--ink); border-radius:999px; font-weight:700; transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;}
+        .cta-panel-btn:hover{transform:translateY(-2px); box-shadow:0 20px 44px -16px rgba(0,0,0,.55);}
         .btn-light{background:#fff; color:var(--ink); border-radius:999px; font-weight:700;
             transition:all .35s cubic-bezier(.22,1,.36,1);}
         .btn-light:hover{transform:translateY(-2px); background:#e9e9ee;}
@@ -108,9 +112,9 @@
         /* FAQ */
         .faq-item{border-bottom:1px solid var(--line-l);}
         .faq-trigger{cursor:pointer; padding:1.6rem 0; width:100%; display:flex; justify-content:space-between; align-items:center; gap:1rem;}
-        .faq-content{display:grid; grid-template-rows:0fr; opacity:0; overflow:hidden; transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1), opacity .28s ease;}
-        .faq-content > *{min-height:0; overflow:hidden;}
-        .faq-item.active .faq-content{grid-template-rows:1fr; opacity:1;}
+        .faq-content{max-height:0; opacity:0; overflow:hidden; transition:max-height .42s cubic-bezier(.4,0,.2,1), opacity .3s ease;}
+        .faq-content > *{padding-bottom:0; transition:padding-bottom .42s cubic-bezier(.4,0,.2,1);}
+        .faq-item.active .faq-content{max-height:520px; opacity:1;}
         .faq-item.active .faq-content > *{padding-bottom:1.6rem;}
         .faq-icon svg{transition:transform .4s cubic-bezier(.4,0,.2,1);}
         .faq-item.active .faq-icon svg{transform:rotate(45deg);}
@@ -227,10 +231,23 @@
         .social-card-arrow{margin-left:auto; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.18);
             display:inline-flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); transition:all .35s ease;}
         .social-card:hover .social-card-arrow{background:var(--accent); border-color:var(--accent); color:#fff; transform:rotate(-45deg);}
-        .footer-map-card{border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.10); height:150px;
+        .footer-map-card{width:132px; height:132px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.10);
             filter:grayscale(.45); transition:filter .5s ease, border-color .5s ease;}
         .footer-map-card:hover{filter:grayscale(0); border-color:rgba(255,255,255,.2);}
         .footer-map-card iframe{width:100%; height:100%; border:0; display:block;}
+        .footer-circle{width:44px; height:44px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#fff; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); transition:transform .35s ease, background .35s ease, border-color .35s ease, box-shadow .35s ease;}
+        .footer-circle:hover{transform:translateY(-3px);}
+        .footer-circle.linkedin:hover{background:#0A66C2; border-color:transparent; box-shadow:0 10px 22px -8px rgba(10,102,194,.6);}
+        .footer-circle.instagram:hover{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); border-color:transparent; box-shadow:0 10px 22px -8px rgba(253,29,29,.5);}
+        .footer-legal{display:flex; flex-direction:column; align-items:flex-start; gap:14px;}
+        .footer-col-title{font-family:'Space Grotesk',monospace; text-transform:uppercase; letter-spacing:.18em; font-size:.7rem; color:rgba(255,255,255,.4); margin-bottom:4px;}
+        .footer-legal a{position:relative; color:rgba(255,255,255,.6); transition:color .3s ease;}
+        .footer-legal a::after{content:""; position:absolute; left:0; bottom:-4px; width:100%; height:1.5px; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .4s cubic-bezier(.16,1,.3,1);}
+        .footer-legal a:hover{color:#fff;}
+        .footer-legal a:hover::after{transform:scaleX(1); transform-origin:left;}
+        .footer-link{position:relative;}
+        .footer-link::after{content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1.5px; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .4s cubic-bezier(.16,1,.3,1);}
+        .footer-link:hover::after{transform:scaleX(1); transform-origin:left;}
 
         /* ---------- IMPACT — registre éditorial ---------- */
         .impact-meta{display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:1.1rem; margin-bottom:3.5rem;}
@@ -306,8 +323,9 @@
 <div class="noise"></div>
 
 <!-- ============ NAV ============ -->
-<nav id="navbar" class="fixed top-4 md:top-5 left-1/2 -translate-x-1/2 z-50 text-white w-[calc(100%-1.25rem)] md:w-auto">
-    <div class="nav-pill flex items-center justify-between gap-3 md:gap-7 pl-4 md:pl-6 pr-2 md:pr-2.5 py-2 md:py-2.5">
+<nav id="navbar" class="fixed top-4 md:top-5 inset-x-0 z-50 text-white flex justify-center px-2.5 pointer-events-none">
+  <div class="flex items-center gap-2 md:gap-3.5 max-w-full pointer-events-auto">
+    <div class="nav-pill flex items-center gap-3 md:gap-7 pl-4 md:pl-6 pr-2 md:pr-2.5 py-2 md:py-2.5">
         <a href="#hero" class="block w-24 md:w-28 hover:opacity-80 transition shrink-0">
             <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto" width="112" height="32" fetchpriority="high">
         </a>
@@ -317,13 +335,16 @@
             <a href="#faq" class="nav-link">FAQ</a>
         </div>
         <div class="flex items-center gap-3 md:gap-4 shrink-0">
-            <a href="https://podblend.podyx.com/login" target="_blank" rel="noopener noreferrer" class="nav-link max-[374px]:hidden">Se connecter</a>
             <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent inline-flex items-center gap-2 px-4 md:px-5 py-2.5 text-xs uppercase tracking-[0.13em]">
                 Réserver
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
         </div>
     </div>
+    <a href="https://podblend.podyx.com/login" target="_blank" rel="noopener noreferrer" aria-label="Se connecter" title="Se connecter" class="login-btn btn-accent shrink-0 w-10 h-10 md:w-[52px] md:h-[52px] rounded-full flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
 </nav>
 
 <!-- ============ 1 · HERO (NOIR) ============ -->
@@ -802,25 +823,21 @@
     </div>
 </section>
 
-<!-- ============ 8 · CTA FINAL (NOIR — éditorial, miroir du hero) ============ -->
-<section class="world-dark grid-dark pb-24 overflow-hidden relative">
-    <div class="glow glow-accent w-[620px] h-[620px] -right-40 -top-20 opacity-35"></div>
+<!-- ============ 8 · CTA FINAL (panneau accent — distinct de la FAQ) ============ -->
+<section class="world-dark py-20 md:py-28 overflow-hidden relative">
     <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
-      <div class="border-t border-white/10 pt-16 md:pt-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-10 items-end">
-            <div class="lg:col-span-7" data-reveal>
-                <span class="label text-white/50 mb-6 block">Prêt à tourner</span>
-                <h2 class="display text-4xl md:text-5xl text-white leading-[1.02] mb-9">Réservez votre<br>première session.</h2>
-                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="btn-accent group inline-flex items-center gap-3 px-8 py-4 text-sm">
+        <div class="cta-panel rounded-[28px] md:rounded-[40px] px-6 py-14 sm:px-10 md:px-12 md:py-24 text-center relative overflow-hidden" data-reveal>
+            <div class="glow glow-accent w-[460px] h-[460px] left-1/2 -translate-x-1/2 -bottom-48 opacity-45"></div>
+            <div class="relative z-10 flex flex-col items-center">
+                <span class="label text-white/60 mb-5 block">Prêt à tourner</span>
+                <h2 class="display text-[1.9rem] sm:text-4xl md:text-5xl text-white leading-[1.08] mb-6 max-w-2xl">Réservez votre première session.</h2>
+                <p class="text-white/65 leading-relaxed max-w-md mb-9">Studio clé en main à Gennevilliers. Vous arrivez, vous parlez, on s'occupe du reste — du tournage aux fichiers prêts à publier.</p>
+                <a href="https://podblend.podyx.com/time-slots" target="_blank" rel="noopener noreferrer" class="cta-panel-btn group inline-flex items-center gap-3 px-8 py-4 text-sm">
                     <span>Réserver une session</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
             </div>
-            <div class="lg:col-span-5" data-reveal style="transition-delay:120ms">
-                <p class="text-white/55 leading-relaxed max-w-sm lg:ml-auto lg:text-right">Studio clé en main à Gennevilliers. Vous arrivez, vous parlez, on s'occupe du reste — du tournage aux fichiers prêts à publier.</p>
-            </div>
         </div>
-      </div>
     </div>
 </section>
 
@@ -828,41 +845,47 @@
 <footer class="world-dark relative overflow-hidden border-t border-white/5 pt-20 md:pt-24 pb-10">
     <div class="footer-wm" aria-hidden="true">PODBLEND</div>
     <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-10 lg:gap-14">
             <!-- Bloc identité -->
-            <div>
+            <div class="footer-left max-w-sm shrink">
                 <a href="#hero" class="block w-32 mb-7 hover:opacity-80 transition">
                     <img src="votre-logo.webp" alt="Podblend" class="w-full h-auto" loading="lazy" width="128" height="36">
                 </a>
-                <p class="text-white/55 max-w-md leading-relaxed mb-8">Studio de création premium à Paris. Podcasts, vidéos d'entreprise, ads et interviews — clé en main, matériel cinéma et opérateur inclus. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
+                <p class="text-white/55 leading-relaxed mb-7">Studio de création premium à Paris. Podcasts, vidéos d'entreprise, ads et interviews — clé en main, matériel cinéma et opérateur inclus. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
+                <div class="flex items-center gap-3 mb-8">
+                    <a href="https://www.linkedin.com/company/podblend/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-circle linkedin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18.5h2.67V9.5zM7 5.88a1.55 1.55 0 1 0 0 3.09 1.55 1.55 0 0 0 0-3.09zM18.34 18.5v-4.93c0-2.64-1.41-3.87-3.29-3.87a2.84 2.84 0 0 0-2.57 1.41h-.04V9.5H9.84V18.5h2.67v-4.46c0-1.18.22-2.32 1.68-2.32 1.44 0 1.46 1.35 1.46 2.39v4.39h2.69z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/podblend.fr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-circle instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+            <!-- Carte + Légal, puis bouton contact en dessous -->
+            <div class="flex flex-col items-start gap-8 shrink-0">
+                <div class="flex items-start gap-7 sm:gap-9">
+                    <div class="footer-map-card shrink-0">
+                        <iframe title="Carte studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" loading="lazy"></iframe>
+                    </div>
+                    <nav class="footer-legal" aria-label="Liens légaux">
+                        <span class="footer-col-title">Légal</span>
+                        <a href="legal.html">Mentions légales</a>
+                        <a href="cgv.html">CGV</a>
+                        <a href="politique-confidentialite.html">Confidentialité</a>
+                    </nav>
+                </div>
                 <a href="mailto:contact@podblend.fr" class="footer-mail inline-flex items-center gap-4">
                     <span>contact@podblend.fr</span>
                     <span class="footer-mail-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
                 </a>
             </div>
-            <!-- Cartes réseaux -->
-            <div class="flex flex-col gap-4 w-full lg:max-w-md lg:ml-auto">
-                <a href="https://www.linkedin.com/company/podblend/" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <span class="social-card-ic" style="background:#0A66C2"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18.5h2.67V9.5zM7 5.88a1.55 1.55 0 1 0 0 3.09 1.55 1.55 0 0 0 0-3.09zM18.34 18.5v-4.93c0-2.64-1.41-3.87-3.29-3.87a2.84 2.84 0 0 0-2.57 1.41h-.04V9.5H9.84V18.5h2.67v-4.46c0-1.18.22-2.32 1.68-2.32 1.44 0 1.46 1.35 1.46 2.39v4.39h2.69z"/></svg></span>
-                    <span><span class="block font-bold text-white">LinkedIn</span><span class="block text-white/45 text-sm">@podblend</span></span>
-                    <span class="social-card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-                </a>
-                <a href="https://www.instagram.com/podblend.fr/" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <span class="social-card-ic" style="background:radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></span>
-                    <span><span class="block font-bold text-white">Instagram</span><span class="block text-white/45 text-sm">@podblend.fr</span></span>
-                    <span class="social-card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-                </a>
-                <div class="footer-map-card">
-                    <iframe title="Carte studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" loading="lazy"></iframe>
-                </div>
-            </div>
         </div>
         <!-- Barre de bas -->
         <div class="mt-16 md:mt-20 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-            <div class="text-white/45 text-sm">© 2024–2026 Podblend — <a href="legal.html" class="hover:text-white transition">Mentions légales</a> · <a href="cgv.html" class="hover:text-white transition">CGV</a> · <a href="politique-confidentialite.html" class="hover:text-white transition">Confidentialité</a></div>
-            <div class="flex items-center gap-5 text-sm">
+            <div class="text-white/45 text-sm">© 2024–2026 Podblend</div>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-x-8 gap-y-4 text-sm w-full md:w-auto">
                 <span class="flex items-center gap-2 text-white/45"><span class="hk-dot"></span> Gennevilliers · Paris</span>
-                <span class="text-white/30">Made by <a href="https://horizon-visual-agency.com/" target="_blank" rel="noopener" class="text-white/60 font-bold hover:text-white transition">Horizon Visual Agency</a></span>
+                <span class="text-white/30">Made by&nbsp;<a href="https://horizon-visual-agency.com/" target="_blank" rel="noopener" class="footer-link text-white/60 font-bold hover:text-white transition">Horizon Visual Agency ☀️</a></span>
             </div>
         </div>
     </div>

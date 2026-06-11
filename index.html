@@ -213,6 +213,9 @@
         .hero-map:hover{filter:grayscale(0);}
         .hero-map iframe{width:100%; height:100%; border:0; pointer-events:none;}
         @media(max-width:640px){.hero-map{display:none;}}
+        /* Survol de la barre sponsors : tous les logos passent en pleine opacité (blanc net) */
+        .sponsor-strip:hover img{opacity:1;}
+        .sponsor-strip:hover .animate-scroll{animation-play-state:paused;}
 
         /* ---------- SOCIALS ---------- */
         .social-ic{width:42px; height:42px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
@@ -386,7 +389,7 @@
     </div>
 
     <!-- Bandeau logos (marquee) -->
-    <div class="relative z-10 w-full border-t border-white/10 bg-black/60 backdrop-blur-sm py-3">
+    <div class="sponsor-strip relative z-10 w-full border-t border-white/10 bg-black/60 backdrop-blur-sm py-3">
         <div class="max-w-container mx-auto px-6 md:px-12 flex items-center gap-8">
             <span class="label text-white/40 shrink-0 hidden md:block">Ils nous font confiance</span>
             <div class="flex overflow-hidden relative w-full flex-1 mask-x">
@@ -399,7 +402,7 @@
                         <img src="5.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 5" width="100" height="28">
                         <img src="6.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 6" width="100" height="20">
                         <img src="7.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 7" width="100" height="20">
-                        <img src="8.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 8" width="100" height="28">
+                        <img src="8.webp" class="h-6 md:h-7 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition" alt="Logo 8" width="100" height="28">
                         <img src="9.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 transition" alt="Logo 9" width="100" height="28">
                     </div>
                     <div class="flex animate-scroll items-center gap-12 md:gap-16 shrink-0 min-w-full justify-around" aria-hidden="true">
@@ -410,7 +413,7 @@
                         <img src="5.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
                         <img src="6.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="20" loading="lazy">
                         <img src="7.webp" class="h-4 md:h-5 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="20" loading="lazy">
-                        <img src="8.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
+                        <img src="8.webp" class="h-6 md:h-7 w-auto object-contain grayscale opacity-50" alt="" width="100" height="28" loading="lazy">
                         <img src="9.webp" class="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-50" alt="" width="100" height="28" loading="lazy">
                     </div>
                 </div>
@@ -850,7 +853,7 @@
 <footer class="world-dark relative overflow-hidden border-t border-white/5 pt-20 md:pt-24 pb-10">
     <div class="footer-wm" aria-hidden="true">PODBLEND</div>
     <div class="relative z-10 max-w-container mx-auto px-6 md:px-12">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-10 lg:gap-14">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-10 lg:gap-14">
             <!-- Bloc identité -->
             <div class="footer-left max-w-sm shrink">
                 <div class="flex items-center gap-5 mb-7">
@@ -866,25 +869,23 @@
                         </a>
                     </div>
                 </div>
-                <p class="text-white/55 leading-relaxed">Studio de création premium à Paris. Podcasts, vidéos d'entreprise, ads et interviews — clé en main, matériel cinéma et opérateur inclus. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
-            </div>
-            <!-- Carte + Légal, puis bouton contact en dessous -->
-            <div class="flex flex-col items-start gap-8 shrink-0">
-                <div class="flex flex-col sm:flex-row items-start gap-8 md:gap-16">
-                    <div class="footer-map-card shrink-0">
-                        <iframe title="Carte studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" loading="lazy"></iframe>
-                    </div>
-                    <nav class="footer-legal" aria-label="Liens légaux">
-                        <span class="footer-col-title">Légal</span>
-                        <a href="legal.html">Mentions légales</a>
-                        <a href="cgv.html">CGV</a>
-                        <a href="politique-confidentialite.html">Confidentialité</a>
-                    </nav>
-                </div>
+                <p class="text-white/55 leading-relaxed mb-8">Studio de création premium à Paris. Podcasts, vidéos d'entreprise, ads et interviews — clé en main, matériel cinéma et opérateur inclus. 12 Place Indira Gandhi, 92230 Gennevilliers.</p>
                 <a href="mailto:contact@podblend.fr" class="footer-mail inline-flex items-center gap-4">
                     <span>contact@podblend.fr</span>
                     <span class="footer-mail-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
                 </a>
+            </div>
+            <!-- Carte + Légal (colonne droite) -->
+            <div class="flex flex-col sm:flex-row items-start gap-8 md:gap-16 shrink-0">
+                <div class="footer-map-card shrink-0">
+                    <iframe title="Carte studio Podblend Gennevilliers" src="https://www.google.com/maps?q=12+Place+Indira+Gandhi+92230+Gennevilliers&output=embed" loading="lazy"></iframe>
+                </div>
+                <nav class="footer-legal" aria-label="Liens légaux">
+                    <span class="footer-col-title">Légal</span>
+                    <a href="legal.html">Mentions légales</a>
+                    <a href="cgv.html">CGV</a>
+                    <a href="politique-confidentialite.html">Confidentialité</a>
+                </nav>
             </div>
         </div>
         <!-- Barre de bas -->
